@@ -30,4 +30,76 @@ class MovieRepositoryImpl extends MovieRepository {
       return const Left(ServerFailure(''));
     }
   }
+
+  @override
+  Future<Either<Failure, List<Movie>>> getNowPlaying() async {
+    try {
+      final result = await remoteDataSource.getNowPlaying();
+      return Right(result.map((e) => e.toEntity()).toList());
+    } on ServerException {
+      return const Left(ServerFailure(''));
+    } on SocketDirection {
+      return const Left(ConnectionFailure('Failed to connect to the network'));
+    } on DioException catch (e) {
+      if (e.error.toString().contains('SocketException')) {
+        return const Left(
+            ConnectionFailure('Failed to connect to the network'));
+      }
+      return const Left(ServerFailure(''));
+    }
+  }
+
+  @override
+  Future<Either<Failure, List<Movie>>> getPopular() async {
+    try {
+      final result = await remoteDataSource.getPopular();
+      return Right(result.map((e) => e.toEntity()).toList());
+    } on ServerException {
+      return const Left(ServerFailure(''));
+    } on SocketDirection {
+      return const Left(ConnectionFailure('Failed to connect to the network'));
+    } on DioException catch (e) {
+      if (e.error.toString().contains('SocketException')) {
+        return const Left(
+            ConnectionFailure('Failed to connect to the network'));
+      }
+      return const Left(ServerFailure(''));
+    }
+  }
+
+  @override
+  Future<Either<Failure, List<Movie>>> getTopRated() async {
+    try {
+      final result = await remoteDataSource.getTopRated();
+      return Right(result.map((e) => e.toEntity()).toList());
+    } on ServerException {
+      return const Left(ServerFailure(''));
+    } on SocketDirection {
+      return const Left(ConnectionFailure('Failed to connect to the network'));
+    } on DioException catch (e) {
+      if (e.error.toString().contains('SocketException')) {
+        return const Left(
+            ConnectionFailure('Failed to connect to the network'));
+      }
+      return const Left(ServerFailure(''));
+    }
+  }
+
+  @override
+  Future<Either<Failure, List<Movie>>> getUpcoming() async {
+    try {
+      final result = await remoteDataSource.getUpcoming();
+      return Right(result.map((e) => e.toEntity()).toList());
+    } on ServerException {
+      return const Left(ServerFailure(''));
+    } on SocketDirection {
+      return const Left(ConnectionFailure('Failed to connect to the network'));
+    } on DioException catch (e) {
+      if (e.error.toString().contains('SocketException')) {
+        return const Left(
+            ConnectionFailure('Failed to connect to the network'));
+      }
+      return const Left(ServerFailure(''));
+    }
+  }
 }

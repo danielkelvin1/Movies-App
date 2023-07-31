@@ -21,3 +21,5 @@ ThemeData darkTheme = ThemeData(
       bodyMedium: GoogleFonts.roboto().copyWith(fontSize: 12),
       bodySmall: GoogleFonts.montserrat().copyWith(fontSize: 12),
     ));
+
+Color colorTabBarView = Color(0xff3a3f47);

@@ -3,7 +3,11 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:kiwi/kiwi.dart';
 import 'package:movies_app/injection.dart';
-import 'package:movies_app/persentation/blocs/bloc/trending_movie_bloc.dart';
+import 'package:movies_app/persentation/blocs/movies/now_playing/now_playing_movie_bloc.dart';
+import 'package:movies_app/persentation/blocs/movies/popular/popular_movies_bloc.dart';
+import 'package:movies_app/persentation/blocs/movies/top_rated/top_rated_movies_bloc.dart';
+import 'package:movies_app/persentation/blocs/movies/trending/trending_movie_bloc.dart';
+import 'package:movies_app/persentation/blocs/movies/upcoming/upcoming_movies_bloc.dart';
 import 'package:movies_app/persentation/pages/home_page.dart';
 import 'package:movies_app/persentation/pages/splash_screen_page.dart';
 import 'package:movies_app/theme.dart';
@@ -22,7 +26,19 @@ class MyApp extends StatelessWidget {
       providers: [
         BlocProvider(
           create: (context) => KiwiContainer().resolve<TrendingMovieBloc>(),
-        )
+        ),
+        BlocProvider(
+          create: (context) => KiwiContainer().resolve<NowPlayingMovieBloc>(),
+        ),
+        BlocProvider(
+          create: (context) => KiwiContainer().resolve<PopularMoviesBloc>(),
+        ),
+        BlocProvider(
+          create: (context) => KiwiContainer().resolve<TopRatedMoviesBloc>(),
+        ),
+        BlocProvider(
+          create: (context) => KiwiContainer().resolve<UpcomingMoviesBloc>(),
+        ),
       ],
       child: MaterialApp.router(
         title: 'Flutter Demo',

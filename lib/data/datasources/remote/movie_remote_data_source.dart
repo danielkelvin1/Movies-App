@@ -1,10 +1,12 @@
-import 'dart:io';
-
 import 'package:movies_app/data/models/remote/movie_model.dart';
 import 'package:movies_app/service/api_service.dart';
 
 abstract class MovieRemoteDataSource {
   Future<List<MovieModel>> getTrending();
+  Future<List<MovieModel>> getNowPlaying();
+  Future<List<MovieModel>> getPopular();
+  Future<List<MovieModel>> getTopRated();
+  Future<List<MovieModel>> getUpcoming();
 }
 
 class MovieRemoteDataSourceImpl extends MovieRemoteDataSource {
@@ -15,5 +17,25 @@ class MovieRemoteDataSourceImpl extends MovieRemoteDataSource {
   @override
   Future<List<MovieModel>> getTrending() {
     return apiService.getTrendingMovies();
+  }
+
+  @override
+  Future<List<MovieModel>> getNowPlaying() {
+    return apiService.getNowPlayingMovies();
+  }
+
+  @override
+  Future<List<MovieModel>> getPopular() {
+    return apiService.getPopularMovies();
+  }
+
+  @override
+  Future<List<MovieModel>> getTopRated() {
+    return apiService.getTopRatedMovies();
+  }
+
+  @override
+  Future<List<MovieModel>> getUpcoming() {
+    return apiService.getUpcomingMovies();
   }
 }

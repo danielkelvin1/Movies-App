@@ -13,14 +13,44 @@ class ApiService {
   Future<List<MovieModel>> getTrendingMovies() async {
     final response = await dio.get(
       '$baseUrl/trending/movie/day',
-      options: Options(
-        headers: {
-          'Authorization': 'Bearer $apiKey',
-          'accept': 'application/json',
-        },
-      ),
     );
 
+    if (response.statusCode == 200) {
+      return MovieResponse.fromJson(response.data).results;
+    } else {
+      throw ServerException();
+    }
+  }
+
+  Future<List<MovieModel>> getNowPlayingMovies() async {
+    final response = await dio.get('$baseUrl/movie/now_playing');
+    if (response.statusCode == 200) {
+      return MovieResponse.fromJson(response.data).results;
+    } else {
+      throw ServerException();
+    }
+  }
+
+  Future<List<MovieModel>> getPopularMovies() async {
+    final response = await dio.get('$baseUrl/movie/popular');
+    if (response.statusCode == 200) {
+      return MovieResponse.fromJson(response.data).results;
+    } else {
+      throw ServerException();
+    }
+  }
+
+  Future<List<MovieModel>> getTopRatedMovies() async {
+    final response = await dio.get('$baseUrl/movie/top_rated');
+    if (response.statusCode == 200) {
+      return MovieResponse.fromJson(response.data).results;
+    } else {
+      throw ServerException();
+    }
+  }
+
+  Future<List<MovieModel>> getUpcomingMovies() async {
+    final response = await dio.get('$baseUrl/movie/upcoming');
     if (response.statusCode == 200) {
       return MovieResponse.fromJson(response.data).results;
     } else {

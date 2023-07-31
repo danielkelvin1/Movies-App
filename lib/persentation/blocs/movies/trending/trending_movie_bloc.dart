@@ -18,7 +18,7 @@ class TrendingMovieBloc extends Bloc<TrendingMovieEvent, TrendingMovieState> {
       result.fold(
         (failure) => emit(_Error(failure.message)),
         (data) => emit(
-          _$_Loaded(data),
+          _Loaded(data),
         ),
       );
     });

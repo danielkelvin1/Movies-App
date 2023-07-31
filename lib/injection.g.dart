@@ -23,7 +23,27 @@ class _$Injection extends Injection {
       ..registerSingleton(
           (c) => GetTrendingMovies(c<MovieRepository>('movie_repo')),
           name: 'get_trending_movies')
+      ..registerSingleton(
+          (c) => GetNowPlayingMovies(c<MovieRepository>('movie_repo')),
+          name: 'get_now_playing_movies')
+      ..registerSingleton(
+          (c) => GetPopularMovies(c<MovieRepository>('movie_repo')),
+          name: 'get_popular_movies')
+      ..registerSingleton(
+          (c) => GetTopRatedMovies(c<MovieRepository>('movie_repo')),
+          name: 'get_top_rated_movies')
+      ..registerSingleton(
+          (c) => GetUpcomingMovies(c<MovieRepository>('movie_repo')),
+          name: 'get_upcoming_movies')
+      ..registerFactory(
+          (c) => TrendingMovieBloc(c<GetTrendingMovies>('get_trending_movies')))
       ..registerFactory((c) =>
-          TrendingMovieBloc(c<GetTrendingMovies>('get_trending_movies')));
+          NowPlayingMovieBloc(c<GetNowPlayingMovies>('get_now_playing_movies')))
+      ..registerFactory(
+          (c) => PopularMoviesBloc(c<GetPopularMovies>('get_popular_movies')))
+      ..registerFactory((c) =>
+          TopRatedMoviesBloc(c<GetTopRatedMovies>('get_top_rated_movies')))
+      ..registerFactory((c) =>
+          UpcomingMoviesBloc(c<GetUpcomingMovies>('get_upcoming_movies')));
   }
 }

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:movies_app/persentation/blocs/bloc/trending_movie_bloc.dart';
+import 'package:movies_app/persentation/blocs/movies/trending/trending_movie_bloc.dart';
 import 'package:movies_app/persentation/pages/movies_page.dart';
 import 'package:movies_app/persentation/widgets/search_widget.dart';
 import 'package:movies_app/persentation/widgets/trending_card_widget.dart';
@@ -15,13 +15,6 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
   int _selectedIndex = 0;
-
-  @override
-  void initState() {
-    // TODO: implement initState
-    super.initState();
-    context.read<TrendingMovieBloc>().add(const TrendingMovieEvent.get());
-  }
 
   PreferredSize _buildAppBar() {
     return PreferredSize(
