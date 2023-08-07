@@ -8,6 +8,11 @@ import 'package:movies_app/persentation/blocs/movies/popular/popular_movies_bloc
 import 'package:movies_app/persentation/blocs/movies/top_rated/top_rated_movies_bloc.dart';
 import 'package:movies_app/persentation/blocs/movies/trending/trending_movie_bloc.dart';
 import 'package:movies_app/persentation/blocs/movies/upcoming/upcoming_movies_bloc.dart';
+import 'package:movies_app/persentation/blocs/tv/airing_today/airing_today_tv_bloc.dart';
+import 'package:movies_app/persentation/blocs/tv/on_the-air/on_the_air_tv_bloc.dart';
+import 'package:movies_app/persentation/blocs/tv/popular/popular_tv_bloc.dart';
+import 'package:movies_app/persentation/blocs/tv/top_rated/top_rated_tv_bloc.dart';
+import 'package:movies_app/persentation/blocs/tv/trending/trending_tv_bloc.dart';
 import 'package:movies_app/persentation/pages/home_page.dart';
 import 'package:movies_app/persentation/pages/splash_screen_page.dart';
 import 'package:movies_app/theme.dart';
@@ -38,6 +43,21 @@ class MyApp extends StatelessWidget {
         ),
         BlocProvider(
           create: (context) => KiwiContainer().resolve<UpcomingMoviesBloc>(),
+        ),
+        BlocProvider(
+          create: (context) => KiwiContainer().resolve<TrendingTvBloc>(),
+        ),
+        BlocProvider(
+          create: (context) => KiwiContainer().resolve<AiringTodayTvBloc>(),
+        ),
+        BlocProvider(
+          create: (context) => KiwiContainer().resolve<OnTheAirTvBloc>(),
+        ),
+        BlocProvider(
+          create: (context) => KiwiContainer().resolve<PopularTvBloc>(),
+        ),
+        BlocProvider(
+          create: (context) => KiwiContainer().resolve<TopRatedTvBloc>(),
         ),
       ],
       child: MaterialApp.router(

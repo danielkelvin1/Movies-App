@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:movies_app/persentation/blocs/movies/trending/trending_movie_bloc.dart';
 import 'package:movies_app/persentation/pages/movies_page.dart';
+import 'package:movies_app/persentation/pages/tv_page.dart';
 import 'package:movies_app/persentation/widgets/search_widget.dart';
 import 'package:movies_app/persentation/widgets/trending_card_widget.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -50,7 +51,7 @@ class _HomePageState extends State<HomePage> {
   List<Widget> _buildBody() {
     return [
       const MoviesPage(),
-      SizedBox(),
+      const TVPage(),
     ];
   }
 

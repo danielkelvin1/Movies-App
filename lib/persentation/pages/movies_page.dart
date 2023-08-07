@@ -6,7 +6,7 @@ import 'package:movies_app/persentation/blocs/movies/popular/popular_movies_bloc
 import 'package:movies_app/persentation/blocs/movies/top_rated/top_rated_movies_bloc.dart';
 import 'package:movies_app/persentation/blocs/movies/trending/trending_movie_bloc.dart';
 import 'package:movies_app/persentation/blocs/movies/upcoming/upcoming_movies_bloc.dart';
-import 'package:movies_app/persentation/widgets/grid_card_movie_widget.dart';
+import 'package:movies_app/persentation/widgets/grid_card_widget.dart';
 import 'package:movies_app/persentation/widgets/trending_card_widget.dart';
 import 'package:movies_app/theme.dart';
 
@@ -38,7 +38,7 @@ class _MoviesPageState extends State<MoviesPage> {
         crossAxisSpacing: 13,
       ),
       itemBuilder: (context, index) =>
-          GridCardMovieWidget(url: movies[index].posterPath ?? ''),
+          GridCardWidget(url: movies[index].posterPath ?? ''),
       itemCount: movies.length,
     );
   }
