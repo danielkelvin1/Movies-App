@@ -8,4 +8,5 @@ abstract class MovieRepository {
   Future<Either<Failure, List<Movie>>> getPopular();
   Future<Either<Failure, List<Movie>>> getTopRated();
   Future<Either<Failure, List<Movie>>> getUpcoming();
+  Future<Either<Failure, List<Movie>>> getSearch(int page, String search);
 }

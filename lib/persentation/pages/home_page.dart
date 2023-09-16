@@ -1,10 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:movies_app/persentation/blocs/movies/trending/trending_movie_bloc.dart';
+import 'package:go_router/go_router.dart';
 import 'package:movies_app/persentation/pages/movies_page.dart';
+import 'package:movies_app/persentation/pages/search_page.dart';
 import 'package:movies_app/persentation/pages/tv_page.dart';
 import 'package:movies_app/persentation/widgets/search_widget.dart';
-import 'package:movies_app/persentation/widgets/trending_card_widget.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -16,6 +15,7 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
   int _selectedIndex = 0;
+  String searchMode = 'movies';
 
   PreferredSize _buildAppBar() {
     return PreferredSize(
@@ -26,6 +26,9 @@ class _HomePageState extends State<HomePage> {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
+                const SizedBox(
+                  height: 12.0,
+                ),
                 Text(
                   'What do you want to watch?',
                   style: Theme.of(context)
@@ -37,10 +40,12 @@ class _HomePageState extends State<HomePage> {
                   height: 24,
                 ),
                 GestureDetector(
-                  child: SearchWidget(
+                  child: const SearchWidget(
                     enabled: false,
                   ),
-                  onTap: () {},
+                  onTap: () {
+                    context.push("${SearchPage.routeName}/$searchMode");
+                  },
                 ),
               ],
             ),
@@ -61,9 +66,15 @@ class _HomePageState extends State<HomePage> {
       onTap: (value) {
         setState(() {
           _selectedIndex = value;
+          if (_selectedIndex == 0) {
+            searchMode = 'movies';
+          } else {
+            searchMode = 'tv';
+          }
         });
       },
       backgroundColor: Theme.of(context).colorScheme.background,
+      selectedItemColor: Theme.of(context).colorScheme.secondary,
       items: const [
         BottomNavigationBarItem(
           icon: Icon(Icons.movie_outlined),

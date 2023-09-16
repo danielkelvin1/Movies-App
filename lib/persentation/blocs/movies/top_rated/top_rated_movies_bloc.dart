@@ -11,7 +11,7 @@ class TopRatedMoviesBloc
     extends Bloc<TopRatedMoviesEvent, TopRatedMoviesState> {
   final GetTopRatedMovies _getTopRatedMovies;
 
-  TopRatedMoviesBloc(this._getTopRatedMovies) : super(_Initial()) {
+  TopRatedMoviesBloc(this._getTopRatedMovies) : super(const _Initial()) {
     on<_Get>((event, emit) async {
       emit(const _Loading());
       final result = await _getTopRatedMovies.execute();

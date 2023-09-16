@@ -16,7 +16,7 @@ abstract class MovieModel with _$MovieModel {
   const factory MovieModel({
     bool? adult,
     @JsonKey(name: "backdrop_path") String? backdropPath,
-    @JsonKey(name: "belongs_to_collection") dynamic? belongsToCollection,
+    @JsonKey(name: "belongs_to_collection") dynamic belongsToCollection,
     int? budget,
     List<GenreModel>? genres,
     String? homepage,
@@ -27,7 +27,7 @@ abstract class MovieModel with _$MovieModel {
     String? overview,
     double? popularity,
     @JsonKey(name: "poster_path") String? posterPath,
-    @JsonKey(name: "release_date") DateTime? releaseDate,
+    @JsonKey(name: "release_date") String? releaseDate,
     int? revenue,
     int? runtime,
     String? status,

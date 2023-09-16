@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:movies_app/domain/entities/tv.dart';
 import 'package:movies_app/persentation/blocs/tv/airing_today/airing_today_tv_bloc.dart';
 import 'package:movies_app/persentation/blocs/tv/on_the-air/on_the_air_tv_bloc.dart';
@@ -9,7 +8,7 @@ import 'package:movies_app/persentation/blocs/tv/trending/trending_tv_bloc.dart'
 import 'package:movies_app/persentation/widgets/grid_card_widget.dart';
 import 'package:movies_app/persentation/widgets/trending_card_widget.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:movies_app/theme.dart';
+import 'package:movies_app/utils/color.dart';
 
 class TVPage extends StatefulWidget {
   const TVPage({super.key});
@@ -45,35 +44,35 @@ class _TVPageState extends State<TVPage> {
 
   @override
   Widget build(BuildContext context) {
-    return SingleChildScrollView(
-      child: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 24),
-        child: Column(
-          children: [
-            SizedBox(
-              height: 210,
-              child: BlocBuilder<TrendingTvBloc, TrendingTvState>(
-                builder: (context, state) {
-                  return state.maybeWhen(
-                    loaded: (tv) => ListView.builder(
-                      itemCount: tv.length,
-                      scrollDirection: Axis.horizontal,
-                      itemBuilder: (context, index) =>
-                          TrendingCardWidget(url: tv[index].posterPath!),
-                    ),
-                    loading: () => Center(
-                        child: CircularProgressIndicator(
-                      color: Theme.of(context).colorScheme.secondary,
-                    )),
-                    orElse: () => const SizedBox(),
-                  );
-                },
-              ),
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 24),
+      child: Column(
+        children: [
+          SizedBox(
+            height: 210,
+            child: BlocBuilder<TrendingTvBloc, TrendingTvState>(
+              builder: (context, state) {
+                return state.maybeWhen(
+                  loaded: (tv) => ListView.builder(
+                    itemCount: tv.length,
+                    scrollDirection: Axis.horizontal,
+                    itemBuilder: (context, index) =>
+                        TrendingCardWidget(url: tv[index].posterPath!),
+                  ),
+                  loading: () => Center(
+                      child: CircularProgressIndicator(
+                    color: Theme.of(context).colorScheme.secondary,
+                  )),
+                  orElse: () => const SizedBox(),
+                );
+              },
             ),
-            const SizedBox(
-              height: 24,
-            ),
-            DefaultTabController(
+          ),
+          const SizedBox(
+            height: 24,
+          ),
+          Expanded(
+            child: DefaultTabController(
               length: 4,
               child: Column(
                 children: [
@@ -82,13 +81,13 @@ class _TVPageState extends State<TVPage> {
                     indicator: BoxDecoration(
                       border: Border(
                         bottom: BorderSide(
-                          color: colorTabBarView,
+                          color: colors(context).colorTabBarView!,
                           width: 4,
                         ),
                       ),
                     ),
-                    labelColor: Colors.white,
-                    unselectedLabelColor: Colors.white,
+                    labelColor: colors(context).colorLabelTabBarView,
+                    unselectedLabelColor: colors(context).colorLabelTabBarView,
                     unselectedLabelStyle:
                         Theme.of(context).textTheme.titleSmall?.copyWith(
                               fontWeight: FontWeight.w400,
@@ -104,62 +103,68 @@ class _TVPageState extends State<TVPage> {
                       Tab(text: 'Top Rated'),
                     ],
                   ),
-                  Container(
-                    height: 300,
-                    margin: const EdgeInsets.only(top: 20),
-                    child: TabBarView(children: [
-                      BlocBuilder<AiringTodayTvBloc, AiringTodayTvState>(
-                        builder: (context, state) {
-                          return state.maybeWhen(
-                            loaded: (tv) => _buildGridView(tv),
-                            loading: () => const Center(
-                                child: CircularProgressIndicator()),
-                            error: (message) => Text(message),
-                            orElse: () => const SizedBox(),
-                          );
-                        },
-                      ),
-                      BlocBuilder<OnTheAirTvBloc, OnTheAirTvState>(
-                        builder: (context, state) {
-                          return state.maybeWhen(
-                            loaded: (tv) => _buildGridView(tv),
-                            loading: () => const Center(
-                              child: CircularProgressIndicator(),
+                  Expanded(
+                    child: LayoutBuilder(
+                      builder: (context, constraints) {
+                        return Container(
+                          height: constraints.biggest.height,
+                          margin: const EdgeInsets.only(top: 20),
+                          child: TabBarView(children: [
+                            BlocBuilder<AiringTodayTvBloc, AiringTodayTvState>(
+                              builder: (context, state) {
+                                return state.maybeWhen(
+                                  loaded: (tv) => _buildGridView(tv),
+                                  loading: () => const Center(
+                                      child: CircularProgressIndicator()),
+                                  error: (message) => Text(message),
+                                  orElse: () => const SizedBox(),
+                                );
+                              },
                             ),
-                            error: (message) => Text(message),
-                            orElse: () => const SizedBox(),
-                          );
-                        },
-                      ),
-                      BlocBuilder<PopularTvBloc, PopularTvState>(
-                        builder: (context, state) {
-                          return state.maybeWhen(
-                            loaded: (tv) => _buildGridView(tv),
-                            loading: () => const Center(
-                                child: CircularProgressIndicator()),
-                            error: (message) => Text(message),
-                            orElse: () => const SizedBox(),
-                          );
-                        },
-                      ),
-                      BlocBuilder<TopRatedTvBloc, TopRatedTvState>(
-                        builder: (context, state) {
-                          return state.maybeWhen(
-                            loaded: (tv) => _buildGridView(tv),
-                            loading: () => const Center(
-                                child: CircularProgressIndicator()),
-                            error: (message) => Text(message),
-                            orElse: () => const SizedBox(),
-                          );
-                        },
-                      ),
-                    ]),
+                            BlocBuilder<OnTheAirTvBloc, OnTheAirTvState>(
+                              builder: (context, state) {
+                                return state.maybeWhen(
+                                  loaded: (tv) => _buildGridView(tv),
+                                  loading: () => const Center(
+                                    child: CircularProgressIndicator(),
+                                  ),
+                                  error: (message) => Text(message),
+                                  orElse: () => const SizedBox(),
+                                );
+                              },
+                            ),
+                            BlocBuilder<PopularTvBloc, PopularTvState>(
+                              builder: (context, state) {
+                                return state.maybeWhen(
+                                  loaded: (tv) => _buildGridView(tv),
+                                  loading: () => const Center(
+                                      child: CircularProgressIndicator()),
+                                  error: (message) => Text(message),
+                                  orElse: () => const SizedBox(),
+                                );
+                              },
+                            ),
+                            BlocBuilder<TopRatedTvBloc, TopRatedTvState>(
+                              builder: (context, state) {
+                                return state.maybeWhen(
+                                  loaded: (tv) => _buildGridView(tv),
+                                  loading: () => const Center(
+                                      child: CircularProgressIndicator()),
+                                  error: (message) => Text(message),
+                                  orElse: () => const SizedBox(),
+                                );
+                              },
+                            ),
+                          ]),
+                        );
+                      },
+                    ),
                   ),
                 ],
               ),
             ),
-          ],
-        ),
+          ),
+        ],
       ),
     );
   }

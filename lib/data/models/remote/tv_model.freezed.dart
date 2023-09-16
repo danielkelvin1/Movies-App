@@ -27,7 +27,7 @@ mixin _$TvModel {
   @JsonKey(name: "episode_run_time")
   List<int>? get episodeRunTime => throw _privateConstructorUsedError;
   @JsonKey(name: "first_air_date")
-  DateTime? get firstAirDate => throw _privateConstructorUsedError;
+  String? get firstAirDate => throw _privateConstructorUsedError;
   List<GenreModel>? get genres => throw _privateConstructorUsedError;
   String? get homepage => throw _privateConstructorUsedError;
   int? get id => throw _privateConstructorUsedError;
@@ -71,7 +71,7 @@ abstract class $TvModelCopyWith<$Res> {
       {@JsonKey(name: "backdrop_path") String? backdropPath,
       @JsonKey(name: "created_by") List<dynamic>? createdBy,
       @JsonKey(name: "episode_run_time") List<int>? episodeRunTime,
-      @JsonKey(name: "first_air_date") DateTime? firstAirDate,
+      @JsonKey(name: "first_air_date") String? firstAirDate,
       List<GenreModel>? genres,
       String? homepage,
       int? id,
@@ -147,7 +147,7 @@ class _$TvModelCopyWithImpl<$Res, $Val extends TvModel>
       firstAirDate: freezed == firstAirDate
           ? _value.firstAirDate
           : firstAirDate // ignore: cast_nullable_to_non_nullable
-              as DateTime?,
+              as String?,
       genres: freezed == genres
           ? _value.genres
           : genres // ignore: cast_nullable_to_non_nullable
@@ -255,7 +255,7 @@ abstract class _$$_TvModelCopyWith<$Res> implements $TvModelCopyWith<$Res> {
       {@JsonKey(name: "backdrop_path") String? backdropPath,
       @JsonKey(name: "created_by") List<dynamic>? createdBy,
       @JsonKey(name: "episode_run_time") List<int>? episodeRunTime,
-      @JsonKey(name: "first_air_date") DateTime? firstAirDate,
+      @JsonKey(name: "first_air_date") String? firstAirDate,
       List<GenreModel>? genres,
       String? homepage,
       int? id,
@@ -330,7 +330,7 @@ class __$$_TvModelCopyWithImpl<$Res>
       firstAirDate: freezed == firstAirDate
           ? _value.firstAirDate
           : firstAirDate // ignore: cast_nullable_to_non_nullable
-              as DateTime?,
+              as String?,
       genres: freezed == genres
           ? _value._genres
           : genres // ignore: cast_nullable_to_non_nullable
@@ -464,7 +464,7 @@ class _$_TvModel extends _TvModel {
 
   @override
   @JsonKey(name: "first_air_date")
-  final DateTime? firstAirDate;
+  final String? firstAirDate;
   final List<GenreModel>? _genres;
   @override
   List<GenreModel>? get genres {
@@ -621,7 +621,7 @@ abstract class _TvModel extends TvModel {
       {@JsonKey(name: "backdrop_path") final String? backdropPath,
       @JsonKey(name: "created_by") final List<dynamic>? createdBy,
       @JsonKey(name: "episode_run_time") final List<int>? episodeRunTime,
-      @JsonKey(name: "first_air_date") final DateTime? firstAirDate,
+      @JsonKey(name: "first_air_date") final String? firstAirDate,
       final List<GenreModel>? genres,
       final String? homepage,
       final int? id,
@@ -656,7 +656,7 @@ abstract class _TvModel extends TvModel {
   List<int>? get episodeRunTime;
   @override
   @JsonKey(name: "first_air_date")
-  DateTime? get firstAirDate;
+  String? get firstAirDate;
   @override
   List<GenreModel>? get genres;
   @override

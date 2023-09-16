@@ -4,7 +4,7 @@ class Tv extends Equatable {
   final String? backdropPath;
   final List<dynamic>? createdBy;
   final List<int>? episodeRunTime;
-  final DateTime? firstAirDate;
+  final String? firstAirDate;
   final List<Genre>? genres;
   final String? homepage;
   final int? id;
@@ -23,7 +23,7 @@ class Tv extends Equatable {
   final double? voteAverage;
   final int? voteCount;
 
-  Tv({
+  const Tv({
     this.backdropPath,
     this.createdBy,
     this.episodeRunTime,
@@ -78,7 +78,7 @@ class Genre extends Equatable {
   final int? id;
   final String? name;
 
-  Genre({
+  const Genre({
     this.id,
     this.name,
   });
@@ -106,7 +106,7 @@ class TEpisodeToAir extends Equatable {
   final int? showId;
   final String? stillPath;
 
-  TEpisodeToAir({
+  const TEpisodeToAir({
     this.id,
     this.name,
     this.overview,

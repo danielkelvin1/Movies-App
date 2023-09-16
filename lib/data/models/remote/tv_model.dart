@@ -14,7 +14,7 @@ abstract class TvModel with _$TvModel {
     @JsonKey(name: "backdrop_path") String? backdropPath,
     @JsonKey(name: "created_by") List<dynamic>? createdBy,
     @JsonKey(name: "episode_run_time") List<int>? episodeRunTime,
-    @JsonKey(name: "first_air_date") DateTime? firstAirDate,
+    @JsonKey(name: "first_air_date") String? firstAirDate,
     List<GenreModel>? genres,
     String? homepage,
     int? id,

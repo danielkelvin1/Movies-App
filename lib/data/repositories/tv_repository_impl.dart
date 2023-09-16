@@ -31,6 +31,7 @@ class TvRepositoryImpl extends TvRepository {
     }
   }
 
+  @override
   Future<Either<Failure, List<Tv>>> getAiringToday() async {
     try {
       final result = await remoteDataSource.getAiringToday();
@@ -48,6 +49,7 @@ class TvRepositoryImpl extends TvRepository {
     }
   }
 
+  @override
   Future<Either<Failure, List<Tv>>> getOnTheAir() async {
     try {
       final result = await remoteDataSource.getOnTheAir();
@@ -65,6 +67,7 @@ class TvRepositoryImpl extends TvRepository {
     }
   }
 
+  @override
   Future<Either<Failure, List<Tv>>> getPopular() async {
     try {
       final result = await remoteDataSource.getPopular();
@@ -82,9 +85,28 @@ class TvRepositoryImpl extends TvRepository {
     }
   }
 
+  @override
   Future<Either<Failure, List<Tv>>> getTopRated() async {
     try {
       final result = await remoteDataSource.getTopRated();
+      return Right(result.map((e) => e.toEntity()).toList());
+    } on ServerException {
+      return const Left(ServerFailure(''));
+    } on SocketException {
+      return const Left(ConnectionFailure('Failed to connect to the network'));
+    } on DioException catch (e) {
+      if (e.error.toString().contains('SocketException')) {
+        return const Left(
+            ConnectionFailure('Failed to connect to the network'));
+      }
+      return const Left(ServerFailure(''));
+    }
+  }
+
+  @override
+  Future<Either<Failure, List<Tv>>> getSearch(int page, String search) async {
+    try {
+      final result = await remoteDataSource.getSearch(page, search);
       return Right(result.map((e) => e.toEntity()).toList());
     } on ServerException {
       return const Left(ServerFailure(''));

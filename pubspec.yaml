@@ -29,6 +29,7 @@ dev_dependencies:
     sdk: flutter
   freezed: ^2.4.1
   kiwi_generator: ^4.1.0
+  mockito: ^5.4.2
 
 flutter:
   assets:

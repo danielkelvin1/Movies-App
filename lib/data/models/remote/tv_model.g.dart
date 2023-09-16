@@ -12,9 +12,7 @@ _$_TvModel _$$_TvModelFromJson(Map<String, dynamic> json) => _$_TvModel(
       episodeRunTime: (json['episode_run_time'] as List<dynamic>?)
           ?.map((e) => e as int)
           .toList(),
-      firstAirDate: json['first_air_date'] == null
-          ? null
-          : DateTime.parse(json['first_air_date'] as String),
+      firstAirDate: json['first_air_date'] as String?,
       genres: (json['genres'] as List<dynamic>?)
           ?.map((e) => GenreModel.fromJson(e as Map<String, dynamic>))
           .toList(),
@@ -51,7 +49,7 @@ Map<String, dynamic> _$$_TvModelToJson(_$_TvModel instance) =>
       'backdrop_path': instance.backdropPath,
       'created_by': instance.createdBy,
       'episode_run_time': instance.episodeRunTime,
-      'first_air_date': instance.firstAirDate?.toIso8601String(),
+      'first_air_date': instance.firstAirDate,
       'genres': instance.genres,
       'homepage': instance.homepage,
       'id': instance.id,

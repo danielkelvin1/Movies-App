@@ -14,7 +14,7 @@ class Movie extends Equatable {
   final String? overview;
   final double? popularity;
   final String? posterPath;
-  final DateTime? releaseDate;
+  final String? releaseDate;
   final int? revenue;
   final int? runtime;
   final String? status;

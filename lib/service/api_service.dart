@@ -11,7 +11,17 @@ class ApiService {
 
   ApiService(this.dio);
 
-  //Movies Api Servvice
+  //Movies Api Service
+  Future<List<MovieModel>> getSearchMovies(int page, String search) async {
+    final response = await dio.get(
+        "$baseUrl/search/movie?query=$search&include_adult=false&language=en-US&page=$page");
+    if (response.statusCode == 200) {
+      return MovieResponse.fromJson(response.data).results;
+    } else {
+      throw ServerException();
+    }
+  }
+
   Future<List<MovieModel>> getTrendingMovies() async {
     final response = await dio.get(
       '$baseUrl/trending/movie/day',
@@ -61,6 +71,16 @@ class ApiService {
   }
 
   //TV Api Service
+  Future<List<TvModel>> getSearchTv(int page, String search) async {
+    final response = await dio.get(
+        '$baseUrl/search/tv?query=$search&include_adult=false&language=en-US&page=$page');
+    if (response.statusCode == 200) {
+      return TvResponse.fromJson(response.data).results;
+    } else {
+      throw ServerException();
+    }
+  }
+
   Future<List<TvModel>> getTrendingTv() async {
     final response = await dio.get('$baseUrl/trending/tv/day');
     if (response.statusCode == 200) {

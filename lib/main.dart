@@ -14,8 +14,10 @@ import 'package:movies_app/persentation/blocs/tv/popular/popular_tv_bloc.dart';
 import 'package:movies_app/persentation/blocs/tv/top_rated/top_rated_tv_bloc.dart';
 import 'package:movies_app/persentation/blocs/tv/trending/trending_tv_bloc.dart';
 import 'package:movies_app/persentation/pages/home_page.dart';
+import 'package:movies_app/persentation/pages/search_page.dart';
 import 'package:movies_app/persentation/pages/splash_screen_page.dart';
-import 'package:movies_app/theme.dart';
+import 'package:movies_app/utils/theme_dark.dart';
+import 'package:movies_app/utils/theme_light.dart';
 
 void main() {
   AppModule.setup();
@@ -63,8 +65,8 @@ class MyApp extends StatelessWidget {
       child: MaterialApp.router(
         title: 'Flutter Demo',
         themeMode: ThemeMode.dark,
-        darkTheme: darkTheme,
-        theme: lightTheme,
+        darkTheme: darkAppTheme(context),
+        theme: lightAppTheme(context),
         routerConfig: _router,
       ),
     );
@@ -81,5 +83,14 @@ final GoRouter _router = GoRouter(
       path: HomePage.routeName,
       builder: (context, state) => const HomePage(),
     ),
+    GoRoute(
+      path: '${SearchPage.routeName}/:mode',
+      builder: (context, state) {
+        final mode = state.pathParameters['mode']!;
+        return SearchPage(
+          mode: mode,
+        );
+      },
+    )
   ],
 );

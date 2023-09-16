@@ -24,7 +24,7 @@ mixin _$MovieModel {
   @JsonKey(name: "backdrop_path")
   String? get backdropPath => throw _privateConstructorUsedError;
   @JsonKey(name: "belongs_to_collection")
-  dynamic? get belongsToCollection => throw _privateConstructorUsedError;
+  dynamic get belongsToCollection => throw _privateConstructorUsedError;
   int? get budget => throw _privateConstructorUsedError;
   List<GenreModel>? get genres => throw _privateConstructorUsedError;
   String? get homepage => throw _privateConstructorUsedError;
@@ -39,7 +39,7 @@ mixin _$MovieModel {
   @JsonKey(name: "poster_path")
   String? get posterPath => throw _privateConstructorUsedError;
   @JsonKey(name: "release_date")
-  DateTime? get releaseDate => throw _privateConstructorUsedError;
+  String? get releaseDate => throw _privateConstructorUsedError;
   int? get revenue => throw _privateConstructorUsedError;
   int? get runtime => throw _privateConstructorUsedError;
   String? get status => throw _privateConstructorUsedError;
@@ -66,7 +66,7 @@ abstract class $MovieModelCopyWith<$Res> {
   $Res call(
       {bool? adult,
       @JsonKey(name: "backdrop_path") String? backdropPath,
-      @JsonKey(name: "belongs_to_collection") dynamic? belongsToCollection,
+      @JsonKey(name: "belongs_to_collection") dynamic belongsToCollection,
       int? budget,
       List<GenreModel>? genres,
       String? homepage,
@@ -77,7 +77,7 @@ abstract class $MovieModelCopyWith<$Res> {
       String? overview,
       double? popularity,
       @JsonKey(name: "poster_path") String? posterPath,
-      @JsonKey(name: "release_date") DateTime? releaseDate,
+      @JsonKey(name: "release_date") String? releaseDate,
       int? revenue,
       int? runtime,
       String? status,
@@ -136,7 +136,7 @@ class _$MovieModelCopyWithImpl<$Res, $Val extends MovieModel>
       belongsToCollection: freezed == belongsToCollection
           ? _value.belongsToCollection
           : belongsToCollection // ignore: cast_nullable_to_non_nullable
-              as dynamic?,
+              as dynamic,
       budget: freezed == budget
           ? _value.budget
           : budget // ignore: cast_nullable_to_non_nullable
@@ -180,7 +180,7 @@ class _$MovieModelCopyWithImpl<$Res, $Val extends MovieModel>
       releaseDate: freezed == releaseDate
           ? _value.releaseDate
           : releaseDate // ignore: cast_nullable_to_non_nullable
-              as DateTime?,
+              as String?,
       revenue: freezed == revenue
           ? _value.revenue
           : revenue // ignore: cast_nullable_to_non_nullable
@@ -228,7 +228,7 @@ abstract class _$$_MovieModelCopyWith<$Res>
   $Res call(
       {bool? adult,
       @JsonKey(name: "backdrop_path") String? backdropPath,
-      @JsonKey(name: "belongs_to_collection") dynamic? belongsToCollection,
+      @JsonKey(name: "belongs_to_collection") dynamic belongsToCollection,
       int? budget,
       List<GenreModel>? genres,
       String? homepage,
@@ -239,7 +239,7 @@ abstract class _$$_MovieModelCopyWith<$Res>
       String? overview,
       double? popularity,
       @JsonKey(name: "poster_path") String? posterPath,
-      @JsonKey(name: "release_date") DateTime? releaseDate,
+      @JsonKey(name: "release_date") String? releaseDate,
       int? revenue,
       int? runtime,
       String? status,
@@ -296,7 +296,7 @@ class __$$_MovieModelCopyWithImpl<$Res>
       belongsToCollection: freezed == belongsToCollection
           ? _value.belongsToCollection
           : belongsToCollection // ignore: cast_nullable_to_non_nullable
-              as dynamic?,
+              as dynamic,
       budget: freezed == budget
           ? _value.budget
           : budget // ignore: cast_nullable_to_non_nullable
@@ -340,7 +340,7 @@ class __$$_MovieModelCopyWithImpl<$Res>
       releaseDate: freezed == releaseDate
           ? _value.releaseDate
           : releaseDate // ignore: cast_nullable_to_non_nullable
-              as DateTime?,
+              as String?,
       revenue: freezed == revenue
           ? _value.revenue
           : revenue // ignore: cast_nullable_to_non_nullable
@@ -416,7 +416,7 @@ class _$_MovieModel extends _MovieModel {
   final String? backdropPath;
   @override
   @JsonKey(name: "belongs_to_collection")
-  final dynamic? belongsToCollection;
+  final dynamic belongsToCollection;
   @override
   final int? budget;
   final List<GenreModel>? _genres;
@@ -450,7 +450,7 @@ class _$_MovieModel extends _MovieModel {
   final String? posterPath;
   @override
   @JsonKey(name: "release_date")
-  final DateTime? releaseDate;
+  final String? releaseDate;
   @override
   final int? revenue;
   @override
@@ -561,8 +561,7 @@ abstract class _MovieModel extends MovieModel {
   const factory _MovieModel(
       {final bool? adult,
       @JsonKey(name: "backdrop_path") final String? backdropPath,
-      @JsonKey(name: "belongs_to_collection")
-      final dynamic? belongsToCollection,
+      @JsonKey(name: "belongs_to_collection") final dynamic belongsToCollection,
       final int? budget,
       final List<GenreModel>? genres,
       final String? homepage,
@@ -573,7 +572,7 @@ abstract class _MovieModel extends MovieModel {
       final String? overview,
       final double? popularity,
       @JsonKey(name: "poster_path") final String? posterPath,
-      @JsonKey(name: "release_date") final DateTime? releaseDate,
+      @JsonKey(name: "release_date") final String? releaseDate,
       final int? revenue,
       final int? runtime,
       final String? status,
@@ -594,7 +593,7 @@ abstract class _MovieModel extends MovieModel {
   String? get backdropPath;
   @override
   @JsonKey(name: "belongs_to_collection")
-  dynamic? get belongsToCollection;
+  dynamic get belongsToCollection;
   @override
   int? get budget;
   @override
@@ -620,7 +619,7 @@ abstract class _MovieModel extends MovieModel {
   String? get posterPath;
   @override
   @JsonKey(name: "release_date")
-  DateTime? get releaseDate;
+  String? get releaseDate;
   @override
   int? get revenue;
   @override

@@ -42,6 +42,12 @@ class _$Injection extends Injection {
           (c) => GetUpcomingMovies(c<MovieRepository>('movie_repo')),
           name: 'get_upcoming_movies')
       ..registerSingleton(
+          (c) => GetSearchMovies(repository: c<MovieRepository>('movie_repo')),
+          name: 'get_search_movies')
+      ..registerSingleton(
+          (c) => GetSearchTv(repository: c<TvRepository>('tv_repo')),
+          name: 'get_search_tv')
+      ..registerSingleton(
           (c) => GetTrendingTv(repository: c<TvRepository>('tv_repo')),
           name: 'get_trending_tv')
       ..registerSingleton(
@@ -57,6 +63,8 @@ class _$Injection extends Injection {
           (c) => GetTopRatedTv(repository: c<TvRepository>('tv_repo')),
           name: 'get_top_rated_tv')
       ..registerFactory(
+          (c) => SearchMoviesBloc(c<GetSearchMovies>('get_search_movies')))
+      ..registerFactory(
           (c) => TrendingMovieBloc(c<GetTrendingMovies>('get_trending_movies')))
       ..registerFactory((c) =>
           NowPlayingMovieBloc(c<GetNowPlayingMovies>('get_now_playing_movies')))
@@ -66,6 +74,7 @@ class _$Injection extends Injection {
           TopRatedMoviesBloc(c<GetTopRatedMovies>('get_top_rated_movies')))
       ..registerFactory((c) =>
           UpcomingMoviesBloc(c<GetUpcomingMovies>('get_upcoming_movies')))
+      ..registerFactory((c) => SearchTvBloc(c<GetSearchTv>('get_search_tv')))
       ..registerFactory(
           (c) => TrendingTvBloc(c<GetTrendingTv>('get_trending_tv')))
       ..registerFactory(

@@ -7,6 +7,7 @@ abstract class TvRemoteDataSource {
   Future<List<TvModel>> getOnTheAir();
   Future<List<TvModel>> getPopular();
   Future<List<TvModel>> getTopRated();
+  Future<List<TvModel>> getSearch(int page, String search);
 }
 
 class TvRemoteDataSourceImpl extends TvRemoteDataSource {
@@ -37,5 +38,10 @@ class TvRemoteDataSourceImpl extends TvRemoteDataSource {
   @override
   Future<List<TvModel>> getAiringToday() {
     return apiService.getAiringTodayTv();
+  }
+
+  @override
+  Future<List<TvModel>> getSearch(int page, String search) {
+    return apiService.getSearchTv(page, search);
   }
 }

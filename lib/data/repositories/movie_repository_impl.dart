@@ -102,4 +102,23 @@ class MovieRepositoryImpl extends MovieRepository {
       return const Left(ServerFailure(''));
     }
   }
+
+  @override
+  Future<Either<Failure, List<Movie>>> getSearch(
+      int page, String search) async {
+    try {
+      final result = await remoteDataSource.getSearch(page, search);
+      return Right(result.map((e) => e.toEntity()).toList());
+    } on ServerException {
+      return const Left(ServerFailure(''));
+    } on SocketDirection {
+      return const Left(ConnectionFailure('Failed to connect to the network'));
+    } on DioException catch (e) {
+      if (e.error.toString().contains("SocketException")) {
+        return const Left(
+            ConnectionFailure("failed to connect ot the network"));
+      }
+      return const Left(ServerFailure(''));
+    }
+  }
 }

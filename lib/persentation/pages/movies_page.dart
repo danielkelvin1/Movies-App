@@ -8,7 +8,8 @@ import 'package:movies_app/persentation/blocs/movies/trending/trending_movie_blo
 import 'package:movies_app/persentation/blocs/movies/upcoming/upcoming_movies_bloc.dart';
 import 'package:movies_app/persentation/widgets/grid_card_widget.dart';
 import 'package:movies_app/persentation/widgets/trending_card_widget.dart';
-import 'package:movies_app/theme.dart';
+
+import '../../utils/color.dart';
 
 class MoviesPage extends StatefulWidget {
   const MoviesPage({super.key});
@@ -33,7 +34,7 @@ class _MoviesPageState extends State<MoviesPage> {
     return GridView.builder(
       gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
         crossAxisCount: 3,
-        childAspectRatio: 100 / 145,
+        childAspectRatio: 1 / 1.45,
         mainAxisSpacing: 18,
         crossAxisSpacing: 13,
       ),
@@ -45,41 +46,41 @@ class _MoviesPageState extends State<MoviesPage> {
 
   @override
   Widget build(BuildContext context) {
-    return SingleChildScrollView(
-      child: Padding(
-        padding: const EdgeInsets.only(left: 24),
-        child: Column(
-          children: [
-            BlocBuilder<TrendingMovieBloc, TrendingMovieState>(
-              builder: (context, state) {
-                return state.maybeWhen(
-                  loaded: (movies) => SizedBox(
-                    height: 210,
-                    child: ListView.builder(
-                      itemCount: movies.length,
-                      itemBuilder: (context, index) => TrendingCardWidget(
-                        url: movies[index].posterPath ??
-                            'https://bki.co.id/foto_berita/no_pict.jpg',
-                      ),
-                      scrollDirection: Axis.horizontal,
+    return Padding(
+      padding: const EdgeInsets.only(left: 24),
+      child: Column(
+        children: [
+          BlocBuilder<TrendingMovieBloc, TrendingMovieState>(
+            builder: (context, state) {
+              return state.maybeWhen(
+                loaded: (movies) => SizedBox(
+                  height: 210,
+                  child: ListView.builder(
+                    itemCount: movies.length,
+                    itemBuilder: (context, index) => TrendingCardWidget(
+                      url: movies[index].posterPath ??
+                          'https://bki.co.id/foto_berita/no_pict.jpg',
+                    ),
+                    scrollDirection: Axis.horizontal,
+                  ),
+                ),
+                error: (message) => Text(message),
+                loading: () => Center(
+                  child: Center(
+                    child: CircularProgressIndicator(
+                      color: Theme.of(context).colorScheme.secondary,
                     ),
                   ),
-                  error: (message) => Text(message),
-                  loading: () => Center(
-                    child: Center(
-                      child: CircularProgressIndicator(
-                        color: Theme.of(context).colorScheme.secondary,
-                      ),
-                    ),
-                  ),
-                  orElse: () => const SizedBox(),
-                );
-              },
-            ),
-            const SizedBox(
-              height: 24,
-            ),
-            DefaultTabController(
+                ),
+                orElse: () => const SizedBox(),
+              );
+            },
+          ),
+          const SizedBox(
+            height: 24,
+          ),
+          Expanded(
+            child: DefaultTabController(
               length: 4,
               child: Column(
                 children: [
@@ -88,13 +89,13 @@ class _MoviesPageState extends State<MoviesPage> {
                     indicator: BoxDecoration(
                       border: Border(
                         bottom: BorderSide(
-                          color: colorTabBarView,
+                          color: colors(context).colorTabBarView!,
                           width: 4,
                         ),
                       ),
                     ),
-                    labelColor: Colors.white,
-                    unselectedLabelColor: Colors.white,
+                    labelColor: colors(context).colorLabelTabBarView,
+                    unselectedLabelColor: colors(context).colorLabelTabBarView,
                     unselectedLabelStyle: Theme.of(context)
                         .textTheme
                         .titleSmall
@@ -111,69 +112,76 @@ class _MoviesPageState extends State<MoviesPage> {
                       Tab(text: 'Upcoming'),
                     ],
                   ),
-                  Container(
-                    height: 300,
-                    margin: const EdgeInsets.only(top: 20),
-                    child: TabBarView(children: [
-                      //Now Playing
-                      BlocBuilder<NowPlayingMovieBloc, NowPlayingMovieState>(
-                        builder: (context, state) {
-                          return state.maybeWhen(
-                            loaded: (movies) => _buildGridView(movies),
-                            loading: () => const Center(
-                              child: CircularProgressIndicator(),
+                  const SizedBox(
+                    height: 8.0,
+                  ),
+                  Expanded(
+                    child: LayoutBuilder(
+                      builder: (context, constraints) {
+                        return SizedBox(
+                          height: constraints.biggest.height,
+                          child: TabBarView(children: [
+                            BlocBuilder<NowPlayingMovieBloc,
+                                NowPlayingMovieState>(
+                              builder: (context, state) {
+                                return state.maybeWhen(
+                                  loaded: (movies) => _buildGridView(movies),
+                                  loading: () => const Center(
+                                    child: CircularProgressIndicator(),
+                                  ),
+                                  error: (message) => Text(message),
+                                  orElse: () => const SizedBox(),
+                                );
+                              },
                             ),
-                            error: (message) => Text(message),
-                            orElse: () => const SizedBox(),
-                          );
-                        },
-                      ),
-                      // Popular
-                      BlocBuilder<PopularMoviesBloc, PopularMoviesState>(
-                        builder: (context, state) {
-                          return state.maybeWhen(
-                            loaded: (movies) => _buildGridView(movies),
-                            loading: () => const Center(
-                              child: CircularProgressIndicator(),
+                            BlocBuilder<PopularMoviesBloc, PopularMoviesState>(
+                              builder: (context, state) {
+                                return state.maybeWhen(
+                                  loaded: (movies) => _buildGridView(movies),
+                                  loading: () => const Center(
+                                    child: CircularProgressIndicator(),
+                                  ),
+                                  error: (message) => Text(message),
+                                  orElse: () => const SizedBox(),
+                                );
+                              },
                             ),
-                            error: (message) => Text(message),
-                            orElse: () => const SizedBox(),
-                          );
-                        },
-                      ),
-                      // Top Rated
-                      BlocBuilder<TopRatedMoviesBloc, TopRatedMoviesState>(
-                        builder: (context, state) {
-                          return state.maybeWhen(
-                            loaded: (movies) => _buildGridView(movies),
-                            loading: () => const Center(
-                              child: CircularProgressIndicator(),
+                            BlocBuilder<TopRatedMoviesBloc,
+                                TopRatedMoviesState>(
+                              builder: (context, state) {
+                                return state.maybeWhen(
+                                  loaded: (movies) => _buildGridView(movies),
+                                  loading: () => const Center(
+                                    child: CircularProgressIndicator(),
+                                  ),
+                                  error: (message) => Text(message),
+                                  orElse: () => const SizedBox(),
+                                );
+                              },
                             ),
-                            error: (message) => Text(message),
-                            orElse: () => const SizedBox(),
-                          );
-                        },
-                      ),
-                      // Upcoming
-                      BlocBuilder<UpcomingMoviesBloc, UpcomingMoviesState>(
-                        builder: (context, state) {
-                          return state.maybeWhen(
-                            loaded: (movies) => _buildGridView(movies),
-                            loading: () => const Center(
-                              child: CircularProgressIndicator(),
+                            BlocBuilder<UpcomingMoviesBloc,
+                                UpcomingMoviesState>(
+                              builder: (context, state) {
+                                return state.maybeWhen(
+                                  loaded: (movies) => _buildGridView(movies),
+                                  loading: () => const Center(
+                                    child: CircularProgressIndicator(),
+                                  ),
+                                  error: (message) => Text(message),
+                                  orElse: () => const SizedBox(),
+                                );
+                              },
                             ),
-                            error: (message) => Text(message),
-                            orElse: () => const SizedBox(),
-                          );
-                        },
-                      ),
-                    ]),
-                  )
+                          ]),
+                        );
+                      },
+                    ),
+                  ),
                 ],
               ),
             ),
-          ],
-        ),
+          ),
+        ],
       ),
     );
   }

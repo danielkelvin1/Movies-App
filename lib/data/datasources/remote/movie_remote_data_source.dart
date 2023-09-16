@@ -7,6 +7,7 @@ abstract class MovieRemoteDataSource {
   Future<List<MovieModel>> getPopular();
   Future<List<MovieModel>> getTopRated();
   Future<List<MovieModel>> getUpcoming();
+  Future<List<MovieModel>> getSearch(int page, String search);
 }
 
 class MovieRemoteDataSourceImpl extends MovieRemoteDataSource {
@@ -37,5 +38,10 @@ class MovieRemoteDataSourceImpl extends MovieRemoteDataSource {
   @override
   Future<List<MovieModel>> getUpcoming() {
     return apiService.getUpcomingMovies();
+  }
+
+  @override
+  Future<List<MovieModel>> getSearch(int page, String search) {
+    return apiService.getSearchMovies(page, search);
   }
 }
