@@ -13,6 +13,7 @@ import 'package:movies_app/persentation/blocs/tv/on_the-air/on_the_air_tv_bloc.d
 import 'package:movies_app/persentation/blocs/tv/popular/popular_tv_bloc.dart';
 import 'package:movies_app/persentation/blocs/tv/top_rated/top_rated_tv_bloc.dart';
 import 'package:movies_app/persentation/blocs/tv/trending/trending_tv_bloc.dart';
+import 'package:movies_app/persentation/pages/detail_page.dart';
 import 'package:movies_app/persentation/pages/home_page.dart';
 import 'package:movies_app/persentation/pages/search_page.dart';
 import 'package:movies_app/persentation/pages/splash_screen_page.dart';
@@ -89,6 +90,15 @@ final GoRouter _router = GoRouter(
         final mode = state.pathParameters['mode']!;
         return SearchPage(
           mode: mode,
+        );
+      },
+    ),
+    GoRoute(
+      path: "${DetailPage.routeName}/:id",
+      builder: (context, state) {
+        final id = int.tryParse(state.pathParameters['id']!) ?? 0;
+        return DetailPage(
+          id: id,
         );
       },
     )

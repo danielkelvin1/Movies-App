@@ -1,11 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:go_router/go_router.dart';
 import 'package:movies_app/domain/entities/movie.dart';
 import 'package:movies_app/persentation/blocs/movies/now_playing/now_playing_movie_bloc.dart';
 import 'package:movies_app/persentation/blocs/movies/popular/popular_movies_bloc.dart';
 import 'package:movies_app/persentation/blocs/movies/top_rated/top_rated_movies_bloc.dart';
 import 'package:movies_app/persentation/blocs/movies/trending/trending_movie_bloc.dart';
 import 'package:movies_app/persentation/blocs/movies/upcoming/upcoming_movies_bloc.dart';
+import 'package:movies_app/persentation/pages/detail_page.dart';
 import 'package:movies_app/persentation/widgets/grid_card_widget.dart';
 import 'package:movies_app/persentation/widgets/trending_card_widget.dart';
 
@@ -38,8 +40,13 @@ class _MoviesPageState extends State<MoviesPage> {
         mainAxisSpacing: 18,
         crossAxisSpacing: 13,
       ),
-      itemBuilder: (context, index) =>
-          GridCardWidget(url: movies[index].posterPath ?? ''),
+      itemBuilder: (context, index) {
+        final item = movies[index];
+        return GestureDetector(
+          onTap: () => context.push("${DetailPage.routeName}/${item.id}"),
+          child: GridCardWidget(url: item.posterPath ?? ''),
+        );
+      },
       itemCount: movies.length,
     );
   }

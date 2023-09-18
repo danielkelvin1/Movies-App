@@ -3,6 +3,7 @@ import 'dart:io';
 import 'package:dartz/dartz.dart';
 import 'package:dio/dio.dart';
 import 'package:movies_app/data/datasources/remote/movie_remote_data_source.dart';
+import 'package:movies_app/domain/entities/cast_movie.dart';
 import 'package:movies_app/domain/entities/movie.dart';
 import 'package:movies_app/domain/repositories/movie_repository.dart';
 import 'package:movies_app/utils/exception.dart';
@@ -109,6 +110,42 @@ class MovieRepositoryImpl extends MovieRepository {
     try {
       final result = await remoteDataSource.getSearch(page, search);
       return Right(result.map((e) => e.toEntity()).toList());
+    } on ServerException {
+      return const Left(ServerFailure(''));
+    } on SocketDirection {
+      return const Left(ConnectionFailure('Failed to connect to the network'));
+    } on DioException catch (e) {
+      if (e.error.toString().contains("SocketException")) {
+        return const Left(
+            ConnectionFailure("failed to connect ot the network"));
+      }
+      return const Left(ServerFailure(''));
+    }
+  }
+
+  @override
+  Future<Either<Failure, List<CastMovie>>> getCast(int id) async {
+    try {
+      final result = await remoteDataSource.getCast(id);
+      return Right(result.map((e) => e.toEntity()).toList());
+    } on ServerException {
+      return const Left(ServerFailure(''));
+    } on SocketDirection {
+      return const Left(ConnectionFailure('Failed to connect to the network'));
+    } on DioException catch (e) {
+      if (e.error.toString().contains("SocketException")) {
+        return const Left(
+            ConnectionFailure("failed to connect ot the network"));
+      }
+      return const Left(ServerFailure(''));
+    }
+  }
+
+  @override
+  Future<Either<Failure, Movie>> getDetails(int id) async {
+    try {
+      final result = await remoteDataSource.getDetail(id);
+      return Right(result.toEntity());
     } on ServerException {
       return const Left(ServerFailure(''));
     } on SocketDirection {

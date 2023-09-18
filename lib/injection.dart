@@ -8,6 +8,8 @@ import 'package:movies_app/data/repositories/tv_repository_impl.dart';
 import 'package:movies_app/domain/repositories/movie_repository.dart';
 import 'package:movies_app/domain/repositories/tv_repository.dart';
 import 'package:movies_app/domain/usecase/get_airing_today_tv.dart';
+import 'package:movies_app/domain/usecase/get_cast_movies.dart';
+import 'package:movies_app/domain/usecase/get_details_movies.dart';
 import 'package:movies_app/domain/usecase/get_now_playing_movies.dart';
 import 'package:movies_app/domain/usecase/get_on_the_air_tv.dart';
 import 'package:movies_app/domain/usecase/get_popular_movies.dart';
@@ -19,6 +21,8 @@ import 'package:movies_app/domain/usecase/get_trending_movies.dart';
 import 'package:movies_app/domain/usecase/get_search_movies.dart';
 import 'package:movies_app/domain/usecase/get_trending_tv.dart';
 import 'package:movies_app/domain/usecase/get_upcoming_movies.dart';
+import 'package:movies_app/persentation/blocs/movies/cast/cast_movies_bloc.dart';
+import 'package:movies_app/persentation/blocs/movies/details/details_movies_bloc.dart';
 import 'package:movies_app/persentation/blocs/movies/now_playing/now_playing_movie_bloc.dart';
 import 'package:movies_app/persentation/blocs/movies/popular/popular_movies_bloc.dart';
 import 'package:movies_app/persentation/blocs/movies/search/search_movies_bloc.dart';
@@ -72,6 +76,10 @@ abstract class Injection {
       resolvers: {MovieRepository: 'movie_repo'}, name: 'get_upcoming_movies')
   @Register.singleton(GetSearchMovies,
       resolvers: {MovieRepository: 'movie_repo'}, name: 'get_search_movies')
+  @Register.singleton(GetDetailsMovies,
+      resolvers: {MovieRepository: 'movie_repo'}, name: 'get_details_movies')
+  @Register.singleton(GetCastMovies,
+      resolvers: {MovieRepository: 'movie_repo'}, name: 'get_cast_movies')
   @Register.singleton(GetSearchTv,
       resolvers: {TvRepository: 'tv_repo'}, name: 'get_search_tv')
   @Register.singleton(GetTrendingTv,
@@ -97,6 +105,10 @@ abstract class Injection {
       resolvers: {GetTopRatedMovies: 'get_top_rated_movies'})
   @Register.factory(UpcomingMoviesBloc,
       resolvers: {GetUpcomingMovies: 'get_upcoming_movies'})
+  @Register.factory(DetailsMoviesBloc,
+      resolvers: {GetDetailsMovies: 'get_details_movies'})
+  @Register.factory(CastMoviesBloc,
+      resolvers: {GetCastMovies: 'get_cast_movies'})
   @Register.factory(SearchTvBloc, resolvers: {GetSearchTv: 'get_search_tv'})
   @Register.factory(TrendingTvBloc,
       resolvers: {GetTrendingTv: 'get_trending_tv'})

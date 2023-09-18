@@ -1,5 +1,7 @@
 import 'package:dio/dio.dart';
+import 'package:movies_app/data/models/remote/cast_movie_response.dart';
 import 'package:movies_app/data/models/remote/movie_model.dart';
+import 'package:movies_app/data/models/remote/cast_movie_model.dart';
 import 'package:movies_app/data/models/remote/movie_response.dart';
 import 'package:movies_app/data/models/remote/tv_model.dart';
 import 'package:movies_app/data/models/remote/tv_response.dart';
@@ -17,6 +19,24 @@ class ApiService {
         "$baseUrl/search/movie?query=$search&include_adult=false&language=en-US&page=$page");
     if (response.statusCode == 200) {
       return MovieResponse.fromJson(response.data).results;
+    } else {
+      throw ServerException();
+    }
+  }
+
+  Future<MovieModel> getDetailsMovie(int id) async {
+    final response = await dio.get("$baseUrl/movie/$id");
+    if (response.statusCode == 200) {
+      return MovieModel.fromJson(response.data);
+    } else {
+      throw ServerException();
+    }
+  }
+
+  Future<List<CastMovieModel>> getCastMovie(int id) async {
+    final response = await dio.get('$baseUrl/movie/$id/credits');
+    if (response.statusCode == 200) {
+      return CastMovieResponse.fromJson(response.data).cast;
     } else {
       throw ServerException();
     }

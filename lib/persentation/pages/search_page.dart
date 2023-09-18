@@ -1,5 +1,6 @@
 // ignore_for_file: camel_case_types, prefer_typing_uninitialized_variables
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:kiwi/kiwi.dart';
 import 'package:movies_app/persentation/blocs/tv/search/serach_tv_bloc.dart';
 import 'package:movies_app/persentation/widgets/grid_card_widget.dart';
@@ -47,16 +48,41 @@ class _SearchPageState extends State<SearchPage> {
   }
 
   PreferredSizeWidget _buildAppBar() {
-    return AppBar(
-      backgroundColor: Colors.transparent,
-      title: SearchWidget(
-        onSubmited: (value) {
-          _searchText = value;
+    return PreferredSize(
+      preferredSize: const Size.fromHeight(80),
+      child: SafeArea(
+        child: Padding(
+          padding: const EdgeInsets.all(16),
+          child: Row(
+            children: [
+              const SizedBox(
+                width: 6.0,
+              ),
+              GestureDetector(
+                onTap: () => context.pop(),
+                child: Icon(
+                  Icons.arrow_back_ios,
+                  size: 30,
+                  color: Theme.of(context).colorScheme.onBackground,
+                ),
+              ),
+              const SizedBox(
+                width: 6.0,
+              ),
+              Expanded(
+                child: SearchWidget(
+                  onSubmited: (value) {
+                    _searchText = value;
 
-          widget.mode == 'movies'
-              ? _blocSearchMovies.add(SearchMoviesEvent.get(value))
-              : _blocSearchTv.add(SearchTvEvent.get(value));
-        },
+                    widget.mode == 'movies'
+                        ? _blocSearchMovies.add(SearchMoviesEvent.get(value))
+                        : _blocSearchTv.add(SearchTvEvent.get(value));
+                  },
+                ),
+              ),
+            ],
+          ),
+        ),
       ),
     );
   }
