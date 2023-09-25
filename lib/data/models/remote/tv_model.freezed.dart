@@ -20,40 +20,54 @@ TvModel _$TvModelFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$TvModel {
+  @HiveField(0)
   @JsonKey(name: "backdrop_path")
   String? get backdropPath => throw _privateConstructorUsedError;
+  @HiveField(1)
   @JsonKey(name: "created_by")
   List<dynamic>? get createdBy => throw _privateConstructorUsedError;
+  @HiveField(2)
   @JsonKey(name: "episode_run_time")
   List<int>? get episodeRunTime => throw _privateConstructorUsedError;
+  @HiveField(3)
   @JsonKey(name: "first_air_date")
   String? get firstAirDate => throw _privateConstructorUsedError;
-  List<GenreModel>? get genres => throw _privateConstructorUsedError;
+  @HiveField(4)
+  List<TvGenreModel>? get genres => throw _privateConstructorUsedError;
+  @HiveField(5)
   String? get homepage => throw _privateConstructorUsedError;
+  @HiveField(6)
   int? get id => throw _privateConstructorUsedError;
+  @HiveField(7)
   @JsonKey(name: "in_production")
   bool? get inProduction => throw _privateConstructorUsedError;
+  @HiveField(8)
   List<String>? get languages => throw _privateConstructorUsedError;
+  @HiveField(9)
   @JsonKey(name: "last_air_date")
-  DateTime? get lastAirDate => throw _privateConstructorUsedError;
-  @JsonKey(name: "last_episode_to_air")
-  TEpisodeToAirModel? get lastEpisodeToAir =>
-      throw _privateConstructorUsedError;
-  String? get name => throw _privateConstructorUsedError;
-  @JsonKey(name: "next_episode_to_air")
-  TEpisodeToAirModel? get nextEpisodeToAir =>
-      throw _privateConstructorUsedError;
+  String? get lastAirDate => throw _privateConstructorUsedError;
+  @HiveField(10)
   @JsonKey(name: "number_of_episodes")
   int? get numberOfEpisodes => throw _privateConstructorUsedError;
+  @HiveField(11)
   @JsonKey(name: "number_of_seasons")
   int? get numberOfSeasons => throw _privateConstructorUsedError;
+  @HiveField(12)
   String? get overview => throw _privateConstructorUsedError;
+  @HiveField(13)
   double? get popularity => throw _privateConstructorUsedError;
+  @HiveField(14)
+  @JsonKey(name: 'original_name')
+  String? get originalName => throw _privateConstructorUsedError;
+  @HiveField(15)
   @JsonKey(name: "poster_path")
   String? get posterPath => throw _privateConstructorUsedError;
+  @HiveField(16)
   String? get status => throw _privateConstructorUsedError;
+  @HiveField(17)
   @JsonKey(name: "vote_average")
   double? get voteAverage => throw _privateConstructorUsedError;
+  @HiveField(18)
   @JsonKey(name: "vote_count")
   int? get voteCount => throw _privateConstructorUsedError;
 
@@ -68,32 +82,27 @@ abstract class $TvModelCopyWith<$Res> {
       _$TvModelCopyWithImpl<$Res, TvModel>;
   @useResult
   $Res call(
-      {@JsonKey(name: "backdrop_path") String? backdropPath,
-      @JsonKey(name: "created_by") List<dynamic>? createdBy,
-      @JsonKey(name: "episode_run_time") List<int>? episodeRunTime,
-      @JsonKey(name: "first_air_date") String? firstAirDate,
-      List<GenreModel>? genres,
-      String? homepage,
-      int? id,
-      @JsonKey(name: "in_production") bool? inProduction,
-      List<String>? languages,
-      @JsonKey(name: "last_air_date") DateTime? lastAirDate,
-      @JsonKey(name: "last_episode_to_air")
-      TEpisodeToAirModel? lastEpisodeToAir,
-      String? name,
-      @JsonKey(name: "next_episode_to_air")
-      TEpisodeToAirModel? nextEpisodeToAir,
-      @JsonKey(name: "number_of_episodes") int? numberOfEpisodes,
-      @JsonKey(name: "number_of_seasons") int? numberOfSeasons,
-      String? overview,
-      double? popularity,
-      @JsonKey(name: "poster_path") String? posterPath,
-      String? status,
-      @JsonKey(name: "vote_average") double? voteAverage,
-      @JsonKey(name: "vote_count") int? voteCount});
-
-  $TEpisodeToAirModelCopyWith<$Res>? get lastEpisodeToAir;
-  $TEpisodeToAirModelCopyWith<$Res>? get nextEpisodeToAir;
+      {@HiveField(0) @JsonKey(name: "backdrop_path") String? backdropPath,
+      @HiveField(1) @JsonKey(name: "created_by") List<dynamic>? createdBy,
+      @HiveField(2)
+      @JsonKey(name: "episode_run_time")
+      List<int>? episodeRunTime,
+      @HiveField(3) @JsonKey(name: "first_air_date") String? firstAirDate,
+      @HiveField(4) List<TvGenreModel>? genres,
+      @HiveField(5) String? homepage,
+      @HiveField(6) int? id,
+      @HiveField(7) @JsonKey(name: "in_production") bool? inProduction,
+      @HiveField(8) List<String>? languages,
+      @HiveField(9) @JsonKey(name: "last_air_date") String? lastAirDate,
+      @HiveField(10) @JsonKey(name: "number_of_episodes") int? numberOfEpisodes,
+      @HiveField(11) @JsonKey(name: "number_of_seasons") int? numberOfSeasons,
+      @HiveField(12) String? overview,
+      @HiveField(13) double? popularity,
+      @HiveField(14) @JsonKey(name: 'original_name') String? originalName,
+      @HiveField(15) @JsonKey(name: "poster_path") String? posterPath,
+      @HiveField(16) String? status,
+      @HiveField(17) @JsonKey(name: "vote_average") double? voteAverage,
+      @HiveField(18) @JsonKey(name: "vote_count") int? voteCount});
 }
 
 /// @nodoc
@@ -119,13 +128,11 @@ class _$TvModelCopyWithImpl<$Res, $Val extends TvModel>
     Object? inProduction = freezed,
     Object? languages = freezed,
     Object? lastAirDate = freezed,
-    Object? lastEpisodeToAir = freezed,
-    Object? name = freezed,
-    Object? nextEpisodeToAir = freezed,
     Object? numberOfEpisodes = freezed,
     Object? numberOfSeasons = freezed,
     Object? overview = freezed,
     Object? popularity = freezed,
+    Object? originalName = freezed,
     Object? posterPath = freezed,
     Object? status = freezed,
     Object? voteAverage = freezed,
@@ -151,7 +158,7 @@ class _$TvModelCopyWithImpl<$Res, $Val extends TvModel>
       genres: freezed == genres
           ? _value.genres
           : genres // ignore: cast_nullable_to_non_nullable
-              as List<GenreModel>?,
+              as List<TvGenreModel>?,
       homepage: freezed == homepage
           ? _value.homepage
           : homepage // ignore: cast_nullable_to_non_nullable
@@ -171,19 +178,7 @@ class _$TvModelCopyWithImpl<$Res, $Val extends TvModel>
       lastAirDate: freezed == lastAirDate
           ? _value.lastAirDate
           : lastAirDate // ignore: cast_nullable_to_non_nullable
-              as DateTime?,
-      lastEpisodeToAir: freezed == lastEpisodeToAir
-          ? _value.lastEpisodeToAir
-          : lastEpisodeToAir // ignore: cast_nullable_to_non_nullable
-              as TEpisodeToAirModel?,
-      name: freezed == name
-          ? _value.name
-          : name // ignore: cast_nullable_to_non_nullable
               as String?,
-      nextEpisodeToAir: freezed == nextEpisodeToAir
-          ? _value.nextEpisodeToAir
-          : nextEpisodeToAir // ignore: cast_nullable_to_non_nullable
-              as TEpisodeToAirModel?,
       numberOfEpisodes: freezed == numberOfEpisodes
           ? _value.numberOfEpisodes
           : numberOfEpisodes // ignore: cast_nullable_to_non_nullable
@@ -200,6 +195,10 @@ class _$TvModelCopyWithImpl<$Res, $Val extends TvModel>
           ? _value.popularity
           : popularity // ignore: cast_nullable_to_non_nullable
               as double?,
+      originalName: freezed == originalName
+          ? _value.originalName
+          : originalName // ignore: cast_nullable_to_non_nullable
+              as String?,
       posterPath: freezed == posterPath
           ? _value.posterPath
           : posterPath // ignore: cast_nullable_to_non_nullable
@@ -218,30 +217,6 @@ class _$TvModelCopyWithImpl<$Res, $Val extends TvModel>
               as int?,
     ) as $Val);
   }
-
-  @override
-  @pragma('vm:prefer-inline')
-  $TEpisodeToAirModelCopyWith<$Res>? get lastEpisodeToAir {
-    if (_value.lastEpisodeToAir == null) {
-      return null;
-    }
-
-    return $TEpisodeToAirModelCopyWith<$Res>(_value.lastEpisodeToAir!, (value) {
-      return _then(_value.copyWith(lastEpisodeToAir: value) as $Val);
-    });
-  }
-
-  @override
-  @pragma('vm:prefer-inline')
-  $TEpisodeToAirModelCopyWith<$Res>? get nextEpisodeToAir {
-    if (_value.nextEpisodeToAir == null) {
-      return null;
-    }
-
-    return $TEpisodeToAirModelCopyWith<$Res>(_value.nextEpisodeToAir!, (value) {
-      return _then(_value.copyWith(nextEpisodeToAir: value) as $Val);
-    });
-  }
 }
 
 /// @nodoc
@@ -252,34 +227,27 @@ abstract class _$$_TvModelCopyWith<$Res> implements $TvModelCopyWith<$Res> {
   @override
   @useResult
   $Res call(
-      {@JsonKey(name: "backdrop_path") String? backdropPath,
-      @JsonKey(name: "created_by") List<dynamic>? createdBy,
-      @JsonKey(name: "episode_run_time") List<int>? episodeRunTime,
-      @JsonKey(name: "first_air_date") String? firstAirDate,
-      List<GenreModel>? genres,
-      String? homepage,
-      int? id,
-      @JsonKey(name: "in_production") bool? inProduction,
-      List<String>? languages,
-      @JsonKey(name: "last_air_date") DateTime? lastAirDate,
-      @JsonKey(name: "last_episode_to_air")
-      TEpisodeToAirModel? lastEpisodeToAir,
-      String? name,
-      @JsonKey(name: "next_episode_to_air")
-      TEpisodeToAirModel? nextEpisodeToAir,
-      @JsonKey(name: "number_of_episodes") int? numberOfEpisodes,
-      @JsonKey(name: "number_of_seasons") int? numberOfSeasons,
-      String? overview,
-      double? popularity,
-      @JsonKey(name: "poster_path") String? posterPath,
-      String? status,
-      @JsonKey(name: "vote_average") double? voteAverage,
-      @JsonKey(name: "vote_count") int? voteCount});
-
-  @override
-  $TEpisodeToAirModelCopyWith<$Res>? get lastEpisodeToAir;
-  @override
-  $TEpisodeToAirModelCopyWith<$Res>? get nextEpisodeToAir;
+      {@HiveField(0) @JsonKey(name: "backdrop_path") String? backdropPath,
+      @HiveField(1) @JsonKey(name: "created_by") List<dynamic>? createdBy,
+      @HiveField(2)
+      @JsonKey(name: "episode_run_time")
+      List<int>? episodeRunTime,
+      @HiveField(3) @JsonKey(name: "first_air_date") String? firstAirDate,
+      @HiveField(4) List<TvGenreModel>? genres,
+      @HiveField(5) String? homepage,
+      @HiveField(6) int? id,
+      @HiveField(7) @JsonKey(name: "in_production") bool? inProduction,
+      @HiveField(8) List<String>? languages,
+      @HiveField(9) @JsonKey(name: "last_air_date") String? lastAirDate,
+      @HiveField(10) @JsonKey(name: "number_of_episodes") int? numberOfEpisodes,
+      @HiveField(11) @JsonKey(name: "number_of_seasons") int? numberOfSeasons,
+      @HiveField(12) String? overview,
+      @HiveField(13) double? popularity,
+      @HiveField(14) @JsonKey(name: 'original_name') String? originalName,
+      @HiveField(15) @JsonKey(name: "poster_path") String? posterPath,
+      @HiveField(16) String? status,
+      @HiveField(17) @JsonKey(name: "vote_average") double? voteAverage,
+      @HiveField(18) @JsonKey(name: "vote_count") int? voteCount});
 }
 
 /// @nodoc
@@ -302,13 +270,11 @@ class __$$_TvModelCopyWithImpl<$Res>
     Object? inProduction = freezed,
     Object? languages = freezed,
     Object? lastAirDate = freezed,
-    Object? lastEpisodeToAir = freezed,
-    Object? name = freezed,
-    Object? nextEpisodeToAir = freezed,
     Object? numberOfEpisodes = freezed,
     Object? numberOfSeasons = freezed,
     Object? overview = freezed,
     Object? popularity = freezed,
+    Object? originalName = freezed,
     Object? posterPath = freezed,
     Object? status = freezed,
     Object? voteAverage = freezed,
@@ -334,7 +300,7 @@ class __$$_TvModelCopyWithImpl<$Res>
       genres: freezed == genres
           ? _value._genres
           : genres // ignore: cast_nullable_to_non_nullable
-              as List<GenreModel>?,
+              as List<TvGenreModel>?,
       homepage: freezed == homepage
           ? _value.homepage
           : homepage // ignore: cast_nullable_to_non_nullable
@@ -354,19 +320,7 @@ class __$$_TvModelCopyWithImpl<$Res>
       lastAirDate: freezed == lastAirDate
           ? _value.lastAirDate
           : lastAirDate // ignore: cast_nullable_to_non_nullable
-              as DateTime?,
-      lastEpisodeToAir: freezed == lastEpisodeToAir
-          ? _value.lastEpisodeToAir
-          : lastEpisodeToAir // ignore: cast_nullable_to_non_nullable
-              as TEpisodeToAirModel?,
-      name: freezed == name
-          ? _value.name
-          : name // ignore: cast_nullable_to_non_nullable
               as String?,
-      nextEpisodeToAir: freezed == nextEpisodeToAir
-          ? _value.nextEpisodeToAir
-          : nextEpisodeToAir // ignore: cast_nullable_to_non_nullable
-              as TEpisodeToAirModel?,
       numberOfEpisodes: freezed == numberOfEpisodes
           ? _value.numberOfEpisodes
           : numberOfEpisodes // ignore: cast_nullable_to_non_nullable
@@ -383,6 +337,10 @@ class __$$_TvModelCopyWithImpl<$Res>
           ? _value.popularity
           : popularity // ignore: cast_nullable_to_non_nullable
               as double?,
+      originalName: freezed == originalName
+          ? _value.originalName
+          : originalName // ignore: cast_nullable_to_non_nullable
+              as String?,
       posterPath: freezed == posterPath
           ? _value.posterPath
           : posterPath // ignore: cast_nullable_to_non_nullable
@@ -407,27 +365,27 @@ class __$$_TvModelCopyWithImpl<$Res>
 @JsonSerializable()
 class _$_TvModel extends _TvModel {
   const _$_TvModel(
-      {@JsonKey(name: "backdrop_path") this.backdropPath,
-      @JsonKey(name: "created_by") final List<dynamic>? createdBy,
-      @JsonKey(name: "episode_run_time") final List<int>? episodeRunTime,
-      @JsonKey(name: "first_air_date") this.firstAirDate,
-      final List<GenreModel>? genres,
-      this.homepage,
-      this.id,
-      @JsonKey(name: "in_production") this.inProduction,
-      final List<String>? languages,
-      @JsonKey(name: "last_air_date") this.lastAirDate,
-      @JsonKey(name: "last_episode_to_air") this.lastEpisodeToAir,
-      this.name,
-      @JsonKey(name: "next_episode_to_air") this.nextEpisodeToAir,
-      @JsonKey(name: "number_of_episodes") this.numberOfEpisodes,
-      @JsonKey(name: "number_of_seasons") this.numberOfSeasons,
-      this.overview,
-      this.popularity,
-      @JsonKey(name: "poster_path") this.posterPath,
-      this.status,
-      @JsonKey(name: "vote_average") this.voteAverage,
-      @JsonKey(name: "vote_count") this.voteCount})
+      {@HiveField(0) @JsonKey(name: "backdrop_path") this.backdropPath,
+      @HiveField(1) @JsonKey(name: "created_by") final List<dynamic>? createdBy,
+      @HiveField(2)
+      @JsonKey(name: "episode_run_time")
+      final List<int>? episodeRunTime,
+      @HiveField(3) @JsonKey(name: "first_air_date") this.firstAirDate,
+      @HiveField(4) final List<TvGenreModel>? genres,
+      @HiveField(5) this.homepage,
+      @HiveField(6) this.id,
+      @HiveField(7) @JsonKey(name: "in_production") this.inProduction,
+      @HiveField(8) final List<String>? languages,
+      @HiveField(9) @JsonKey(name: "last_air_date") this.lastAirDate,
+      @HiveField(10) @JsonKey(name: "number_of_episodes") this.numberOfEpisodes,
+      @HiveField(11) @JsonKey(name: "number_of_seasons") this.numberOfSeasons,
+      @HiveField(12) this.overview,
+      @HiveField(13) this.popularity,
+      @HiveField(14) @JsonKey(name: 'original_name') this.originalName,
+      @HiveField(15) @JsonKey(name: "poster_path") this.posterPath,
+      @HiveField(16) this.status,
+      @HiveField(17) @JsonKey(name: "vote_average") this.voteAverage,
+      @HiveField(18) @JsonKey(name: "vote_count") this.voteCount})
       : _createdBy = createdBy,
         _episodeRunTime = episodeRunTime,
         _genres = genres,
@@ -438,10 +396,12 @@ class _$_TvModel extends _TvModel {
       _$$_TvModelFromJson(json);
 
   @override
+  @HiveField(0)
   @JsonKey(name: "backdrop_path")
   final String? backdropPath;
   final List<dynamic>? _createdBy;
   @override
+  @HiveField(1)
   @JsonKey(name: "created_by")
   List<dynamic>? get createdBy {
     final value = _createdBy;
@@ -453,6 +413,7 @@ class _$_TvModel extends _TvModel {
 
   final List<int>? _episodeRunTime;
   @override
+  @HiveField(2)
   @JsonKey(name: "episode_run_time")
   List<int>? get episodeRunTime {
     final value = _episodeRunTime;
@@ -463,11 +424,13 @@ class _$_TvModel extends _TvModel {
   }
 
   @override
+  @HiveField(3)
   @JsonKey(name: "first_air_date")
   final String? firstAirDate;
-  final List<GenreModel>? _genres;
+  final List<TvGenreModel>? _genres;
   @override
-  List<GenreModel>? get genres {
+  @HiveField(4)
+  List<TvGenreModel>? get genres {
     final value = _genres;
     if (value == null) return null;
     if (_genres is EqualUnmodifiableListView) return _genres;
@@ -476,14 +439,18 @@ class _$_TvModel extends _TvModel {
   }
 
   @override
+  @HiveField(5)
   final String? homepage;
   @override
+  @HiveField(6)
   final int? id;
   @override
+  @HiveField(7)
   @JsonKey(name: "in_production")
   final bool? inProduction;
   final List<String>? _languages;
   @override
+  @HiveField(8)
   List<String>? get languages {
     final value = _languages;
     if (value == null) return null;
@@ -493,41 +460,46 @@ class _$_TvModel extends _TvModel {
   }
 
   @override
+  @HiveField(9)
   @JsonKey(name: "last_air_date")
-  final DateTime? lastAirDate;
+  final String? lastAirDate;
   @override
-  @JsonKey(name: "last_episode_to_air")
-  final TEpisodeToAirModel? lastEpisodeToAir;
-  @override
-  final String? name;
-  @override
-  @JsonKey(name: "next_episode_to_air")
-  final TEpisodeToAirModel? nextEpisodeToAir;
-  @override
+  @HiveField(10)
   @JsonKey(name: "number_of_episodes")
   final int? numberOfEpisodes;
   @override
+  @HiveField(11)
   @JsonKey(name: "number_of_seasons")
   final int? numberOfSeasons;
   @override
+  @HiveField(12)
   final String? overview;
   @override
+  @HiveField(13)
   final double? popularity;
   @override
+  @HiveField(14)
+  @JsonKey(name: 'original_name')
+  final String? originalName;
+  @override
+  @HiveField(15)
   @JsonKey(name: "poster_path")
   final String? posterPath;
   @override
+  @HiveField(16)
   final String? status;
   @override
+  @HiveField(17)
   @JsonKey(name: "vote_average")
   final double? voteAverage;
   @override
+  @HiveField(18)
   @JsonKey(name: "vote_count")
   final int? voteCount;
 
   @override
   String toString() {
-    return 'TvModel(backdropPath: $backdropPath, createdBy: $createdBy, episodeRunTime: $episodeRunTime, firstAirDate: $firstAirDate, genres: $genres, homepage: $homepage, id: $id, inProduction: $inProduction, languages: $languages, lastAirDate: $lastAirDate, lastEpisodeToAir: $lastEpisodeToAir, name: $name, nextEpisodeToAir: $nextEpisodeToAir, numberOfEpisodes: $numberOfEpisodes, numberOfSeasons: $numberOfSeasons, overview: $overview, popularity: $popularity, posterPath: $posterPath, status: $status, voteAverage: $voteAverage, voteCount: $voteCount)';
+    return 'TvModel(backdropPath: $backdropPath, createdBy: $createdBy, episodeRunTime: $episodeRunTime, firstAirDate: $firstAirDate, genres: $genres, homepage: $homepage, id: $id, inProduction: $inProduction, languages: $languages, lastAirDate: $lastAirDate, numberOfEpisodes: $numberOfEpisodes, numberOfSeasons: $numberOfSeasons, overview: $overview, popularity: $popularity, originalName: $originalName, posterPath: $posterPath, status: $status, voteAverage: $voteAverage, voteCount: $voteCount)';
   }
 
   @override
@@ -553,11 +525,6 @@ class _$_TvModel extends _TvModel {
                 .equals(other._languages, _languages) &&
             (identical(other.lastAirDate, lastAirDate) ||
                 other.lastAirDate == lastAirDate) &&
-            (identical(other.lastEpisodeToAir, lastEpisodeToAir) ||
-                other.lastEpisodeToAir == lastEpisodeToAir) &&
-            (identical(other.name, name) || other.name == name) &&
-            (identical(other.nextEpisodeToAir, nextEpisodeToAir) ||
-                other.nextEpisodeToAir == nextEpisodeToAir) &&
             (identical(other.numberOfEpisodes, numberOfEpisodes) ||
                 other.numberOfEpisodes == numberOfEpisodes) &&
             (identical(other.numberOfSeasons, numberOfSeasons) ||
@@ -566,6 +533,8 @@ class _$_TvModel extends _TvModel {
                 other.overview == overview) &&
             (identical(other.popularity, popularity) ||
                 other.popularity == popularity) &&
+            (identical(other.originalName, originalName) ||
+                other.originalName == originalName) &&
             (identical(other.posterPath, posterPath) ||
                 other.posterPath == posterPath) &&
             (identical(other.status, status) || other.status == status) &&
@@ -589,13 +558,11 @@ class _$_TvModel extends _TvModel {
         inProduction,
         const DeepCollectionEquality().hash(_languages),
         lastAirDate,
-        lastEpisodeToAir,
-        name,
-        nextEpisodeToAir,
         numberOfEpisodes,
         numberOfSeasons,
         overview,
         popularity,
+        originalName,
         posterPath,
         status,
         voteAverage,
@@ -618,86 +585,104 @@ class _$_TvModel extends _TvModel {
 
 abstract class _TvModel extends TvModel {
   const factory _TvModel(
-      {@JsonKey(name: "backdrop_path") final String? backdropPath,
-      @JsonKey(name: "created_by") final List<dynamic>? createdBy,
-      @JsonKey(name: "episode_run_time") final List<int>? episodeRunTime,
-      @JsonKey(name: "first_air_date") final String? firstAirDate,
-      final List<GenreModel>? genres,
-      final String? homepage,
-      final int? id,
-      @JsonKey(name: "in_production") final bool? inProduction,
-      final List<String>? languages,
-      @JsonKey(name: "last_air_date") final DateTime? lastAirDate,
-      @JsonKey(name: "last_episode_to_air")
-      final TEpisodeToAirModel? lastEpisodeToAir,
-      final String? name,
-      @JsonKey(name: "next_episode_to_air")
-      final TEpisodeToAirModel? nextEpisodeToAir,
-      @JsonKey(name: "number_of_episodes") final int? numberOfEpisodes,
-      @JsonKey(name: "number_of_seasons") final int? numberOfSeasons,
-      final String? overview,
-      final double? popularity,
-      @JsonKey(name: "poster_path") final String? posterPath,
-      final String? status,
-      @JsonKey(name: "vote_average") final double? voteAverage,
-      @JsonKey(name: "vote_count") final int? voteCount}) = _$_TvModel;
+      {@HiveField(0) @JsonKey(name: "backdrop_path") final String? backdropPath,
+      @HiveField(1) @JsonKey(name: "created_by") final List<dynamic>? createdBy,
+      @HiveField(2)
+      @JsonKey(name: "episode_run_time")
+      final List<int>? episodeRunTime,
+      @HiveField(3) @JsonKey(name: "first_air_date") final String? firstAirDate,
+      @HiveField(4) final List<TvGenreModel>? genres,
+      @HiveField(5) final String? homepage,
+      @HiveField(6) final int? id,
+      @HiveField(7) @JsonKey(name: "in_production") final bool? inProduction,
+      @HiveField(8) final List<String>? languages,
+      @HiveField(9) @JsonKey(name: "last_air_date") final String? lastAirDate,
+      @HiveField(10)
+      @JsonKey(name: "number_of_episodes")
+      final int? numberOfEpisodes,
+      @HiveField(11)
+      @JsonKey(name: "number_of_seasons")
+      final int? numberOfSeasons,
+      @HiveField(12) final String? overview,
+      @HiveField(13) final double? popularity,
+      @HiveField(14) @JsonKey(name: 'original_name') final String? originalName,
+      @HiveField(15) @JsonKey(name: "poster_path") final String? posterPath,
+      @HiveField(16) final String? status,
+      @HiveField(17) @JsonKey(name: "vote_average") final double? voteAverage,
+      @HiveField(18)
+      @JsonKey(name: "vote_count")
+      final int? voteCount}) = _$_TvModel;
   const _TvModel._() : super._();
 
   factory _TvModel.fromJson(Map<String, dynamic> json) = _$_TvModel.fromJson;
 
   @override
+  @HiveField(0)
   @JsonKey(name: "backdrop_path")
   String? get backdropPath;
   @override
+  @HiveField(1)
   @JsonKey(name: "created_by")
   List<dynamic>? get createdBy;
   @override
+  @HiveField(2)
   @JsonKey(name: "episode_run_time")
   List<int>? get episodeRunTime;
   @override
+  @HiveField(3)
   @JsonKey(name: "first_air_date")
   String? get firstAirDate;
   @override
-  List<GenreModel>? get genres;
+  @HiveField(4)
+  List<TvGenreModel>? get genres;
   @override
+  @HiveField(5)
   String? get homepage;
   @override
+  @HiveField(6)
   int? get id;
   @override
+  @HiveField(7)
   @JsonKey(name: "in_production")
   bool? get inProduction;
   @override
+  @HiveField(8)
   List<String>? get languages;
   @override
+  @HiveField(9)
   @JsonKey(name: "last_air_date")
-  DateTime? get lastAirDate;
+  String? get lastAirDate;
   @override
-  @JsonKey(name: "last_episode_to_air")
-  TEpisodeToAirModel? get lastEpisodeToAir;
-  @override
-  String? get name;
-  @override
-  @JsonKey(name: "next_episode_to_air")
-  TEpisodeToAirModel? get nextEpisodeToAir;
-  @override
+  @HiveField(10)
   @JsonKey(name: "number_of_episodes")
   int? get numberOfEpisodes;
   @override
+  @HiveField(11)
   @JsonKey(name: "number_of_seasons")
   int? get numberOfSeasons;
   @override
+  @HiveField(12)
   String? get overview;
   @override
+  @HiveField(13)
   double? get popularity;
   @override
+  @HiveField(14)
+  @JsonKey(name: 'original_name')
+  String? get originalName;
+  @override
+  @HiveField(15)
   @JsonKey(name: "poster_path")
   String? get posterPath;
   @override
+  @HiveField(16)
   String? get status;
   @override
+  @HiveField(17)
   @JsonKey(name: "vote_average")
   double? get voteAverage;
   @override
+  @HiveField(18)
   @JsonKey(name: "vote_count")
   int? get voteCount;
   @override
@@ -706,34 +691,36 @@ abstract class _TvModel extends TvModel {
       throw _privateConstructorUsedError;
 }
 
-GenreModel _$GenreModelFromJson(Map<String, dynamic> json) {
-  return _GenreModel.fromJson(json);
+TvGenreModel _$TvGenreModelFromJson(Map<String, dynamic> json) {
+  return _TvGenreModel.fromJson(json);
 }
 
 /// @nodoc
-mixin _$GenreModel {
+mixin _$TvGenreModel {
+  @HiveField(0)
   int? get id => throw _privateConstructorUsedError;
+  @HiveField(1)
   String? get name => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
-  $GenreModelCopyWith<GenreModel> get copyWith =>
+  $TvGenreModelCopyWith<TvGenreModel> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $GenreModelCopyWith<$Res> {
-  factory $GenreModelCopyWith(
-          GenreModel value, $Res Function(GenreModel) then) =
-      _$GenreModelCopyWithImpl<$Res, GenreModel>;
+abstract class $TvGenreModelCopyWith<$Res> {
+  factory $TvGenreModelCopyWith(
+          TvGenreModel value, $Res Function(TvGenreModel) then) =
+      _$TvGenreModelCopyWithImpl<$Res, TvGenreModel>;
   @useResult
-  $Res call({int? id, String? name});
+  $Res call({@HiveField(0) int? id, @HiveField(1) String? name});
 }
 
 /// @nodoc
-class _$GenreModelCopyWithImpl<$Res, $Val extends GenreModel>
-    implements $GenreModelCopyWith<$Res> {
-  _$GenreModelCopyWithImpl(this._value, this._then);
+class _$TvGenreModelCopyWithImpl<$Res, $Val extends TvGenreModel>
+    implements $TvGenreModelCopyWith<$Res> {
+  _$TvGenreModelCopyWithImpl(this._value, this._then);
 
   // ignore: unused_field
   final $Val _value;
@@ -760,22 +747,22 @@ class _$GenreModelCopyWithImpl<$Res, $Val extends GenreModel>
 }
 
 /// @nodoc
-abstract class _$$_GenreModelCopyWith<$Res>
-    implements $GenreModelCopyWith<$Res> {
-  factory _$$_GenreModelCopyWith(
-          _$_GenreModel value, $Res Function(_$_GenreModel) then) =
-      __$$_GenreModelCopyWithImpl<$Res>;
+abstract class _$$_TvGenreModelCopyWith<$Res>
+    implements $TvGenreModelCopyWith<$Res> {
+  factory _$$_TvGenreModelCopyWith(
+          _$_TvGenreModel value, $Res Function(_$_TvGenreModel) then) =
+      __$$_TvGenreModelCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({int? id, String? name});
+  $Res call({@HiveField(0) int? id, @HiveField(1) String? name});
 }
 
 /// @nodoc
-class __$$_GenreModelCopyWithImpl<$Res>
-    extends _$GenreModelCopyWithImpl<$Res, _$_GenreModel>
-    implements _$$_GenreModelCopyWith<$Res> {
-  __$$_GenreModelCopyWithImpl(
-      _$_GenreModel _value, $Res Function(_$_GenreModel) _then)
+class __$$_TvGenreModelCopyWithImpl<$Res>
+    extends _$TvGenreModelCopyWithImpl<$Res, _$_TvGenreModel>
+    implements _$$_TvGenreModelCopyWith<$Res> {
+  __$$_TvGenreModelCopyWithImpl(
+      _$_TvGenreModel _value, $Res Function(_$_TvGenreModel) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -784,7 +771,7 @@ class __$$_GenreModelCopyWithImpl<$Res>
     Object? id = freezed,
     Object? name = freezed,
   }) {
-    return _then(_$_GenreModel(
+    return _then(_$_TvGenreModel(
       id: freezed == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
@@ -799,27 +786,30 @@ class __$$_GenreModelCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$_GenreModel extends _GenreModel {
-  const _$_GenreModel({this.id, this.name}) : super._();
+class _$_TvGenreModel extends _TvGenreModel {
+  const _$_TvGenreModel({@HiveField(0) this.id, @HiveField(1) this.name})
+      : super._();
 
-  factory _$_GenreModel.fromJson(Map<String, dynamic> json) =>
-      _$$_GenreModelFromJson(json);
+  factory _$_TvGenreModel.fromJson(Map<String, dynamic> json) =>
+      _$$_TvGenreModelFromJson(json);
 
   @override
+  @HiveField(0)
   final int? id;
   @override
+  @HiveField(1)
   final String? name;
 
   @override
   String toString() {
-    return 'GenreModel(id: $id, name: $name)';
+    return 'TvGenreModel(id: $id, name: $name)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_GenreModel &&
+            other is _$_TvGenreModel &&
             (identical(other.id, id) || other.id == id) &&
             (identical(other.name, name) || other.name == name));
   }
@@ -831,464 +821,34 @@ class _$_GenreModel extends _GenreModel {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_GenreModelCopyWith<_$_GenreModel> get copyWith =>
-      __$$_GenreModelCopyWithImpl<_$_GenreModel>(this, _$identity);
+  _$$_TvGenreModelCopyWith<_$_TvGenreModel> get copyWith =>
+      __$$_TvGenreModelCopyWithImpl<_$_TvGenreModel>(this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_GenreModelToJson(
+    return _$$_TvGenreModelToJson(
       this,
     );
   }
 }
 
-abstract class _GenreModel extends GenreModel {
-  const factory _GenreModel({final int? id, final String? name}) =
-      _$_GenreModel;
-  const _GenreModel._() : super._();
+abstract class _TvGenreModel extends TvGenreModel {
+  const factory _TvGenreModel(
+      {@HiveField(0) final int? id,
+      @HiveField(1) final String? name}) = _$_TvGenreModel;
+  const _TvGenreModel._() : super._();
 
-  factory _GenreModel.fromJson(Map<String, dynamic> json) =
-      _$_GenreModel.fromJson;
+  factory _TvGenreModel.fromJson(Map<String, dynamic> json) =
+      _$_TvGenreModel.fromJson;
 
   @override
+  @HiveField(0)
   int? get id;
   @override
+  @HiveField(1)
   String? get name;
   @override
   @JsonKey(ignore: true)
-  _$$_GenreModelCopyWith<_$_GenreModel> get copyWith =>
-      throw _privateConstructorUsedError;
-}
-
-TEpisodeToAirModel _$TEpisodeToAirModelFromJson(Map<String, dynamic> json) {
-  return _TEpisodeToAirModel.fromJson(json);
-}
-
-/// @nodoc
-mixin _$TEpisodeToAirModel {
-  int? get id => throw _privateConstructorUsedError;
-  String? get name => throw _privateConstructorUsedError;
-  String? get overview => throw _privateConstructorUsedError;
-  @JsonKey(name: "vote_average")
-  int? get voteAverage => throw _privateConstructorUsedError;
-  @JsonKey(name: "vote_count")
-  int? get voteCount => throw _privateConstructorUsedError;
-  @JsonKey(name: "air_date")
-  DateTime? get airDate => throw _privateConstructorUsedError;
-  @JsonKey(name: "episode_number")
-  int? get episodeNumber => throw _privateConstructorUsedError;
-  @JsonKey(name: "episode_type")
-  String? get episodeType => throw _privateConstructorUsedError;
-  @JsonKey(name: "production_code")
-  String? get productionCode => throw _privateConstructorUsedError;
-  int? get runtime => throw _privateConstructorUsedError;
-  @JsonKey(name: "season_number")
-  int? get seasonNumber => throw _privateConstructorUsedError;
-  @JsonKey(name: "show_id")
-  int? get showId => throw _privateConstructorUsedError;
-  @JsonKey(name: "still_path")
-  String? get stillPath => throw _privateConstructorUsedError;
-
-  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
-  $TEpisodeToAirModelCopyWith<TEpisodeToAirModel> get copyWith =>
-      throw _privateConstructorUsedError;
-}
-
-/// @nodoc
-abstract class $TEpisodeToAirModelCopyWith<$Res> {
-  factory $TEpisodeToAirModelCopyWith(
-          TEpisodeToAirModel value, $Res Function(TEpisodeToAirModel) then) =
-      _$TEpisodeToAirModelCopyWithImpl<$Res, TEpisodeToAirModel>;
-  @useResult
-  $Res call(
-      {int? id,
-      String? name,
-      String? overview,
-      @JsonKey(name: "vote_average") int? voteAverage,
-      @JsonKey(name: "vote_count") int? voteCount,
-      @JsonKey(name: "air_date") DateTime? airDate,
-      @JsonKey(name: "episode_number") int? episodeNumber,
-      @JsonKey(name: "episode_type") String? episodeType,
-      @JsonKey(name: "production_code") String? productionCode,
-      int? runtime,
-      @JsonKey(name: "season_number") int? seasonNumber,
-      @JsonKey(name: "show_id") int? showId,
-      @JsonKey(name: "still_path") String? stillPath});
-}
-
-/// @nodoc
-class _$TEpisodeToAirModelCopyWithImpl<$Res, $Val extends TEpisodeToAirModel>
-    implements $TEpisodeToAirModelCopyWith<$Res> {
-  _$TEpisodeToAirModelCopyWithImpl(this._value, this._then);
-
-  // ignore: unused_field
-  final $Val _value;
-  // ignore: unused_field
-  final $Res Function($Val) _then;
-
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? id = freezed,
-    Object? name = freezed,
-    Object? overview = freezed,
-    Object? voteAverage = freezed,
-    Object? voteCount = freezed,
-    Object? airDate = freezed,
-    Object? episodeNumber = freezed,
-    Object? episodeType = freezed,
-    Object? productionCode = freezed,
-    Object? runtime = freezed,
-    Object? seasonNumber = freezed,
-    Object? showId = freezed,
-    Object? stillPath = freezed,
-  }) {
-    return _then(_value.copyWith(
-      id: freezed == id
-          ? _value.id
-          : id // ignore: cast_nullable_to_non_nullable
-              as int?,
-      name: freezed == name
-          ? _value.name
-          : name // ignore: cast_nullable_to_non_nullable
-              as String?,
-      overview: freezed == overview
-          ? _value.overview
-          : overview // ignore: cast_nullable_to_non_nullable
-              as String?,
-      voteAverage: freezed == voteAverage
-          ? _value.voteAverage
-          : voteAverage // ignore: cast_nullable_to_non_nullable
-              as int?,
-      voteCount: freezed == voteCount
-          ? _value.voteCount
-          : voteCount // ignore: cast_nullable_to_non_nullable
-              as int?,
-      airDate: freezed == airDate
-          ? _value.airDate
-          : airDate // ignore: cast_nullable_to_non_nullable
-              as DateTime?,
-      episodeNumber: freezed == episodeNumber
-          ? _value.episodeNumber
-          : episodeNumber // ignore: cast_nullable_to_non_nullable
-              as int?,
-      episodeType: freezed == episodeType
-          ? _value.episodeType
-          : episodeType // ignore: cast_nullable_to_non_nullable
-              as String?,
-      productionCode: freezed == productionCode
-          ? _value.productionCode
-          : productionCode // ignore: cast_nullable_to_non_nullable
-              as String?,
-      runtime: freezed == runtime
-          ? _value.runtime
-          : runtime // ignore: cast_nullable_to_non_nullable
-              as int?,
-      seasonNumber: freezed == seasonNumber
-          ? _value.seasonNumber
-          : seasonNumber // ignore: cast_nullable_to_non_nullable
-              as int?,
-      showId: freezed == showId
-          ? _value.showId
-          : showId // ignore: cast_nullable_to_non_nullable
-              as int?,
-      stillPath: freezed == stillPath
-          ? _value.stillPath
-          : stillPath // ignore: cast_nullable_to_non_nullable
-              as String?,
-    ) as $Val);
-  }
-}
-
-/// @nodoc
-abstract class _$$_TEpisodeToAirModelCopyWith<$Res>
-    implements $TEpisodeToAirModelCopyWith<$Res> {
-  factory _$$_TEpisodeToAirModelCopyWith(_$_TEpisodeToAirModel value,
-          $Res Function(_$_TEpisodeToAirModel) then) =
-      __$$_TEpisodeToAirModelCopyWithImpl<$Res>;
-  @override
-  @useResult
-  $Res call(
-      {int? id,
-      String? name,
-      String? overview,
-      @JsonKey(name: "vote_average") int? voteAverage,
-      @JsonKey(name: "vote_count") int? voteCount,
-      @JsonKey(name: "air_date") DateTime? airDate,
-      @JsonKey(name: "episode_number") int? episodeNumber,
-      @JsonKey(name: "episode_type") String? episodeType,
-      @JsonKey(name: "production_code") String? productionCode,
-      int? runtime,
-      @JsonKey(name: "season_number") int? seasonNumber,
-      @JsonKey(name: "show_id") int? showId,
-      @JsonKey(name: "still_path") String? stillPath});
-}
-
-/// @nodoc
-class __$$_TEpisodeToAirModelCopyWithImpl<$Res>
-    extends _$TEpisodeToAirModelCopyWithImpl<$Res, _$_TEpisodeToAirModel>
-    implements _$$_TEpisodeToAirModelCopyWith<$Res> {
-  __$$_TEpisodeToAirModelCopyWithImpl(
-      _$_TEpisodeToAirModel _value, $Res Function(_$_TEpisodeToAirModel) _then)
-      : super(_value, _then);
-
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? id = freezed,
-    Object? name = freezed,
-    Object? overview = freezed,
-    Object? voteAverage = freezed,
-    Object? voteCount = freezed,
-    Object? airDate = freezed,
-    Object? episodeNumber = freezed,
-    Object? episodeType = freezed,
-    Object? productionCode = freezed,
-    Object? runtime = freezed,
-    Object? seasonNumber = freezed,
-    Object? showId = freezed,
-    Object? stillPath = freezed,
-  }) {
-    return _then(_$_TEpisodeToAirModel(
-      id: freezed == id
-          ? _value.id
-          : id // ignore: cast_nullable_to_non_nullable
-              as int?,
-      name: freezed == name
-          ? _value.name
-          : name // ignore: cast_nullable_to_non_nullable
-              as String?,
-      overview: freezed == overview
-          ? _value.overview
-          : overview // ignore: cast_nullable_to_non_nullable
-              as String?,
-      voteAverage: freezed == voteAverage
-          ? _value.voteAverage
-          : voteAverage // ignore: cast_nullable_to_non_nullable
-              as int?,
-      voteCount: freezed == voteCount
-          ? _value.voteCount
-          : voteCount // ignore: cast_nullable_to_non_nullable
-              as int?,
-      airDate: freezed == airDate
-          ? _value.airDate
-          : airDate // ignore: cast_nullable_to_non_nullable
-              as DateTime?,
-      episodeNumber: freezed == episodeNumber
-          ? _value.episodeNumber
-          : episodeNumber // ignore: cast_nullable_to_non_nullable
-              as int?,
-      episodeType: freezed == episodeType
-          ? _value.episodeType
-          : episodeType // ignore: cast_nullable_to_non_nullable
-              as String?,
-      productionCode: freezed == productionCode
-          ? _value.productionCode
-          : productionCode // ignore: cast_nullable_to_non_nullable
-              as String?,
-      runtime: freezed == runtime
-          ? _value.runtime
-          : runtime // ignore: cast_nullable_to_non_nullable
-              as int?,
-      seasonNumber: freezed == seasonNumber
-          ? _value.seasonNumber
-          : seasonNumber // ignore: cast_nullable_to_non_nullable
-              as int?,
-      showId: freezed == showId
-          ? _value.showId
-          : showId // ignore: cast_nullable_to_non_nullable
-              as int?,
-      stillPath: freezed == stillPath
-          ? _value.stillPath
-          : stillPath // ignore: cast_nullable_to_non_nullable
-              as String?,
-    ));
-  }
-}
-
-/// @nodoc
-@JsonSerializable()
-class _$_TEpisodeToAirModel extends _TEpisodeToAirModel {
-  const _$_TEpisodeToAirModel(
-      {this.id,
-      this.name,
-      this.overview,
-      @JsonKey(name: "vote_average") this.voteAverage,
-      @JsonKey(name: "vote_count") this.voteCount,
-      @JsonKey(name: "air_date") this.airDate,
-      @JsonKey(name: "episode_number") this.episodeNumber,
-      @JsonKey(name: "episode_type") this.episodeType,
-      @JsonKey(name: "production_code") this.productionCode,
-      this.runtime,
-      @JsonKey(name: "season_number") this.seasonNumber,
-      @JsonKey(name: "show_id") this.showId,
-      @JsonKey(name: "still_path") this.stillPath})
-      : super._();
-
-  factory _$_TEpisodeToAirModel.fromJson(Map<String, dynamic> json) =>
-      _$$_TEpisodeToAirModelFromJson(json);
-
-  @override
-  final int? id;
-  @override
-  final String? name;
-  @override
-  final String? overview;
-  @override
-  @JsonKey(name: "vote_average")
-  final int? voteAverage;
-  @override
-  @JsonKey(name: "vote_count")
-  final int? voteCount;
-  @override
-  @JsonKey(name: "air_date")
-  final DateTime? airDate;
-  @override
-  @JsonKey(name: "episode_number")
-  final int? episodeNumber;
-  @override
-  @JsonKey(name: "episode_type")
-  final String? episodeType;
-  @override
-  @JsonKey(name: "production_code")
-  final String? productionCode;
-  @override
-  final int? runtime;
-  @override
-  @JsonKey(name: "season_number")
-  final int? seasonNumber;
-  @override
-  @JsonKey(name: "show_id")
-  final int? showId;
-  @override
-  @JsonKey(name: "still_path")
-  final String? stillPath;
-
-  @override
-  String toString() {
-    return 'TEpisodeToAirModel(id: $id, name: $name, overview: $overview, voteAverage: $voteAverage, voteCount: $voteCount, airDate: $airDate, episodeNumber: $episodeNumber, episodeType: $episodeType, productionCode: $productionCode, runtime: $runtime, seasonNumber: $seasonNumber, showId: $showId, stillPath: $stillPath)';
-  }
-
-  @override
-  bool operator ==(dynamic other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _$_TEpisodeToAirModel &&
-            (identical(other.id, id) || other.id == id) &&
-            (identical(other.name, name) || other.name == name) &&
-            (identical(other.overview, overview) ||
-                other.overview == overview) &&
-            (identical(other.voteAverage, voteAverage) ||
-                other.voteAverage == voteAverage) &&
-            (identical(other.voteCount, voteCount) ||
-                other.voteCount == voteCount) &&
-            (identical(other.airDate, airDate) || other.airDate == airDate) &&
-            (identical(other.episodeNumber, episodeNumber) ||
-                other.episodeNumber == episodeNumber) &&
-            (identical(other.episodeType, episodeType) ||
-                other.episodeType == episodeType) &&
-            (identical(other.productionCode, productionCode) ||
-                other.productionCode == productionCode) &&
-            (identical(other.runtime, runtime) || other.runtime == runtime) &&
-            (identical(other.seasonNumber, seasonNumber) ||
-                other.seasonNumber == seasonNumber) &&
-            (identical(other.showId, showId) || other.showId == showId) &&
-            (identical(other.stillPath, stillPath) ||
-                other.stillPath == stillPath));
-  }
-
-  @JsonKey(ignore: true)
-  @override
-  int get hashCode => Object.hash(
-      runtimeType,
-      id,
-      name,
-      overview,
-      voteAverage,
-      voteCount,
-      airDate,
-      episodeNumber,
-      episodeType,
-      productionCode,
-      runtime,
-      seasonNumber,
-      showId,
-      stillPath);
-
-  @JsonKey(ignore: true)
-  @override
-  @pragma('vm:prefer-inline')
-  _$$_TEpisodeToAirModelCopyWith<_$_TEpisodeToAirModel> get copyWith =>
-      __$$_TEpisodeToAirModelCopyWithImpl<_$_TEpisodeToAirModel>(
-          this, _$identity);
-
-  @override
-  Map<String, dynamic> toJson() {
-    return _$$_TEpisodeToAirModelToJson(
-      this,
-    );
-  }
-}
-
-abstract class _TEpisodeToAirModel extends TEpisodeToAirModel {
-  const factory _TEpisodeToAirModel(
-          {final int? id,
-          final String? name,
-          final String? overview,
-          @JsonKey(name: "vote_average") final int? voteAverage,
-          @JsonKey(name: "vote_count") final int? voteCount,
-          @JsonKey(name: "air_date") final DateTime? airDate,
-          @JsonKey(name: "episode_number") final int? episodeNumber,
-          @JsonKey(name: "episode_type") final String? episodeType,
-          @JsonKey(name: "production_code") final String? productionCode,
-          final int? runtime,
-          @JsonKey(name: "season_number") final int? seasonNumber,
-          @JsonKey(name: "show_id") final int? showId,
-          @JsonKey(name: "still_path") final String? stillPath}) =
-      _$_TEpisodeToAirModel;
-  const _TEpisodeToAirModel._() : super._();
-
-  factory _TEpisodeToAirModel.fromJson(Map<String, dynamic> json) =
-      _$_TEpisodeToAirModel.fromJson;
-
-  @override
-  int? get id;
-  @override
-  String? get name;
-  @override
-  String? get overview;
-  @override
-  @JsonKey(name: "vote_average")
-  int? get voteAverage;
-  @override
-  @JsonKey(name: "vote_count")
-  int? get voteCount;
-  @override
-  @JsonKey(name: "air_date")
-  DateTime? get airDate;
-  @override
-  @JsonKey(name: "episode_number")
-  int? get episodeNumber;
-  @override
-  @JsonKey(name: "episode_type")
-  String? get episodeType;
-  @override
-  @JsonKey(name: "production_code")
-  String? get productionCode;
-  @override
-  int? get runtime;
-  @override
-  @JsonKey(name: "season_number")
-  int? get seasonNumber;
-  @override
-  @JsonKey(name: "show_id")
-  int? get showId;
-  @override
-  @JsonKey(name: "still_path")
-  String? get stillPath;
-  @override
-  @JsonKey(ignore: true)
-  _$$_TEpisodeToAirModelCopyWith<_$_TEpisodeToAirModel> get copyWith =>
+  _$$_TvGenreModelCopyWith<_$_TvGenreModel> get copyWith =>
       throw _privateConstructorUsedError;
 }

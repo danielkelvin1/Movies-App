@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:movies_app/persentation/pages/book_mark_page.dart';
 import 'package:movies_app/persentation/pages/movies_page.dart';
 import 'package:movies_app/persentation/pages/search_page.dart';
 import 'package:movies_app/persentation/pages/tv_page.dart';
@@ -54,10 +55,7 @@ class _HomePageState extends State<HomePage> {
   }
 
   List<Widget> _buildBody() {
-    return [
-      const MoviesPage(),
-      const TVPage(),
-    ];
+    return [const MoviesPage(), const TVPage(), const BookMarkPage()];
   }
 
   Widget _buildBottomNavigation() {
@@ -84,6 +82,10 @@ class _HomePageState extends State<HomePage> {
           icon: Icon(Icons.tv_outlined),
           label: 'TV',
         ),
+        BottomNavigationBarItem(
+          icon: Icon(Icons.bookmark),
+          label: 'Bookmark',
+        ),
       ],
     );
   }
@@ -91,7 +93,7 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: _buildAppBar(),
+      appBar: _selectedIndex != 2 ? _buildAppBar() : null,
       body: _buildBody()[_selectedIndex],
       bottomNavigationBar: _buildBottomNavigation(),
     );

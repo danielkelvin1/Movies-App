@@ -20,34 +20,56 @@ MovieModel _$MovieModelFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$MovieModel {
+  @HiveField(0)
   bool? get adult => throw _privateConstructorUsedError;
+  @HiveField(1)
   @JsonKey(name: "backdrop_path")
   String? get backdropPath => throw _privateConstructorUsedError;
+  @HiveField(2)
   @JsonKey(name: "belongs_to_collection")
   dynamic get belongsToCollection => throw _privateConstructorUsedError;
+  @HiveField(3)
   int? get budget => throw _privateConstructorUsedError;
+  @HiveField(4)
   List<GenreModel>? get genres => throw _privateConstructorUsedError;
+  @HiveField(5)
   String? get homepage => throw _privateConstructorUsedError;
+  @HiveField(6)
   int? get id => throw _privateConstructorUsedError;
+  @HiveField(7)
   String? get imdbId => throw _privateConstructorUsedError;
+  @HiveField(8)
   @JsonKey(name: "original_language")
   String? get originalLanguage => throw _privateConstructorUsedError;
+  @HiveField(9)
   @JsonKey(name: "original_title")
   String? get originalTitle => throw _privateConstructorUsedError;
+  @HiveField(10)
   String? get overview => throw _privateConstructorUsedError;
+  @HiveField(11)
   double? get popularity => throw _privateConstructorUsedError;
+  @HiveField(12)
   @JsonKey(name: "poster_path")
   String? get posterPath => throw _privateConstructorUsedError;
+  @HiveField(13)
   @JsonKey(name: "release_date")
   String? get releaseDate => throw _privateConstructorUsedError;
+  @HiveField(14)
   int? get revenue => throw _privateConstructorUsedError;
+  @HiveField(15)
   int? get runtime => throw _privateConstructorUsedError;
+  @HiveField(16)
   String? get status => throw _privateConstructorUsedError;
+  @HiveField(17)
   String? get tagline => throw _privateConstructorUsedError;
+  @HiveField(18)
   String? get title => throw _privateConstructorUsedError;
+  @HiveField(19)
   bool? get video => throw _privateConstructorUsedError;
+  @HiveField(20)
   @JsonKey(name: "vote_average")
   double? get voteAverage => throw _privateConstructorUsedError;
+  @HiveField(21)
   @JsonKey(name: "vote_count")
   int? get voteCount => throw _privateConstructorUsedError;
 
@@ -64,28 +86,32 @@ abstract class $MovieModelCopyWith<$Res> {
       _$MovieModelCopyWithImpl<$Res, MovieModel>;
   @useResult
   $Res call(
-      {bool? adult,
-      @JsonKey(name: "backdrop_path") String? backdropPath,
-      @JsonKey(name: "belongs_to_collection") dynamic belongsToCollection,
-      int? budget,
-      List<GenreModel>? genres,
-      String? homepage,
-      int? id,
-      String? imdbId,
-      @JsonKey(name: "original_language") String? originalLanguage,
-      @JsonKey(name: "original_title") String? originalTitle,
-      String? overview,
-      double? popularity,
-      @JsonKey(name: "poster_path") String? posterPath,
-      @JsonKey(name: "release_date") String? releaseDate,
-      int? revenue,
-      int? runtime,
-      String? status,
-      String? tagline,
-      String? title,
-      bool? video,
-      @JsonKey(name: "vote_average") double? voteAverage,
-      @JsonKey(name: "vote_count") int? voteCount});
+      {@HiveField(0) bool? adult,
+      @HiveField(1) @JsonKey(name: "backdrop_path") String? backdropPath,
+      @HiveField(2)
+      @JsonKey(name: "belongs_to_collection")
+      dynamic belongsToCollection,
+      @HiveField(3) int? budget,
+      @HiveField(4) List<GenreModel>? genres,
+      @HiveField(5) String? homepage,
+      @HiveField(6) int? id,
+      @HiveField(7) String? imdbId,
+      @HiveField(8)
+      @JsonKey(name: "original_language")
+      String? originalLanguage,
+      @HiveField(9) @JsonKey(name: "original_title") String? originalTitle,
+      @HiveField(10) String? overview,
+      @HiveField(11) double? popularity,
+      @HiveField(12) @JsonKey(name: "poster_path") String? posterPath,
+      @HiveField(13) @JsonKey(name: "release_date") String? releaseDate,
+      @HiveField(14) int? revenue,
+      @HiveField(15) int? runtime,
+      @HiveField(16) String? status,
+      @HiveField(17) String? tagline,
+      @HiveField(18) String? title,
+      @HiveField(19) bool? video,
+      @HiveField(20) @JsonKey(name: "vote_average") double? voteAverage,
+      @HiveField(21) @JsonKey(name: "vote_count") int? voteCount});
 }
 
 /// @nodoc
@@ -226,28 +252,32 @@ abstract class _$$_MovieModelCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {bool? adult,
-      @JsonKey(name: "backdrop_path") String? backdropPath,
-      @JsonKey(name: "belongs_to_collection") dynamic belongsToCollection,
-      int? budget,
-      List<GenreModel>? genres,
-      String? homepage,
-      int? id,
-      String? imdbId,
-      @JsonKey(name: "original_language") String? originalLanguage,
-      @JsonKey(name: "original_title") String? originalTitle,
-      String? overview,
-      double? popularity,
-      @JsonKey(name: "poster_path") String? posterPath,
-      @JsonKey(name: "release_date") String? releaseDate,
-      int? revenue,
-      int? runtime,
-      String? status,
-      String? tagline,
-      String? title,
-      bool? video,
-      @JsonKey(name: "vote_average") double? voteAverage,
-      @JsonKey(name: "vote_count") int? voteCount});
+      {@HiveField(0) bool? adult,
+      @HiveField(1) @JsonKey(name: "backdrop_path") String? backdropPath,
+      @HiveField(2)
+      @JsonKey(name: "belongs_to_collection")
+      dynamic belongsToCollection,
+      @HiveField(3) int? budget,
+      @HiveField(4) List<GenreModel>? genres,
+      @HiveField(5) String? homepage,
+      @HiveField(6) int? id,
+      @HiveField(7) String? imdbId,
+      @HiveField(8)
+      @JsonKey(name: "original_language")
+      String? originalLanguage,
+      @HiveField(9) @JsonKey(name: "original_title") String? originalTitle,
+      @HiveField(10) String? overview,
+      @HiveField(11) double? popularity,
+      @HiveField(12) @JsonKey(name: "poster_path") String? posterPath,
+      @HiveField(13) @JsonKey(name: "release_date") String? releaseDate,
+      @HiveField(14) int? revenue,
+      @HiveField(15) int? runtime,
+      @HiveField(16) String? status,
+      @HiveField(17) String? tagline,
+      @HiveField(18) String? title,
+      @HiveField(19) bool? video,
+      @HiveField(20) @JsonKey(name: "vote_average") double? voteAverage,
+      @HiveField(21) @JsonKey(name: "vote_count") int? voteCount});
 }
 
 /// @nodoc
@@ -381,28 +411,30 @@ class __$$_MovieModelCopyWithImpl<$Res>
 @JsonSerializable()
 class _$_MovieModel extends _MovieModel {
   const _$_MovieModel(
-      {this.adult,
-      @JsonKey(name: "backdrop_path") this.backdropPath,
-      @JsonKey(name: "belongs_to_collection") this.belongsToCollection,
-      this.budget,
-      final List<GenreModel>? genres,
-      this.homepage,
-      this.id,
-      this.imdbId,
-      @JsonKey(name: "original_language") this.originalLanguage,
-      @JsonKey(name: "original_title") this.originalTitle,
-      this.overview,
-      this.popularity,
-      @JsonKey(name: "poster_path") this.posterPath,
-      @JsonKey(name: "release_date") this.releaseDate,
-      this.revenue,
-      this.runtime,
-      this.status,
-      this.tagline,
-      this.title,
-      this.video,
-      @JsonKey(name: "vote_average") this.voteAverage,
-      @JsonKey(name: "vote_count") this.voteCount})
+      {@HiveField(0) this.adult,
+      @HiveField(1) @JsonKey(name: "backdrop_path") this.backdropPath,
+      @HiveField(2)
+      @JsonKey(name: "belongs_to_collection")
+      this.belongsToCollection,
+      @HiveField(3) this.budget,
+      @HiveField(4) final List<GenreModel>? genres,
+      @HiveField(5) this.homepage,
+      @HiveField(6) this.id,
+      @HiveField(7) this.imdbId,
+      @HiveField(8) @JsonKey(name: "original_language") this.originalLanguage,
+      @HiveField(9) @JsonKey(name: "original_title") this.originalTitle,
+      @HiveField(10) this.overview,
+      @HiveField(11) this.popularity,
+      @HiveField(12) @JsonKey(name: "poster_path") this.posterPath,
+      @HiveField(13) @JsonKey(name: "release_date") this.releaseDate,
+      @HiveField(14) this.revenue,
+      @HiveField(15) this.runtime,
+      @HiveField(16) this.status,
+      @HiveField(17) this.tagline,
+      @HiveField(18) this.title,
+      @HiveField(19) this.video,
+      @HiveField(20) @JsonKey(name: "vote_average") this.voteAverage,
+      @HiveField(21) @JsonKey(name: "vote_count") this.voteCount})
       : _genres = genres,
         super._();
 
@@ -410,17 +442,22 @@ class _$_MovieModel extends _MovieModel {
       _$$_MovieModelFromJson(json);
 
   @override
+  @HiveField(0)
   final bool? adult;
   @override
+  @HiveField(1)
   @JsonKey(name: "backdrop_path")
   final String? backdropPath;
   @override
+  @HiveField(2)
   @JsonKey(name: "belongs_to_collection")
   final dynamic belongsToCollection;
   @override
+  @HiveField(3)
   final int? budget;
   final List<GenreModel>? _genres;
   @override
+  @HiveField(4)
   List<GenreModel>? get genres {
     final value = _genres;
     if (value == null) return null;
@@ -430,43 +467,60 @@ class _$_MovieModel extends _MovieModel {
   }
 
   @override
+  @HiveField(5)
   final String? homepage;
   @override
+  @HiveField(6)
   final int? id;
   @override
+  @HiveField(7)
   final String? imdbId;
   @override
+  @HiveField(8)
   @JsonKey(name: "original_language")
   final String? originalLanguage;
   @override
+  @HiveField(9)
   @JsonKey(name: "original_title")
   final String? originalTitle;
   @override
+  @HiveField(10)
   final String? overview;
   @override
+  @HiveField(11)
   final double? popularity;
   @override
+  @HiveField(12)
   @JsonKey(name: "poster_path")
   final String? posterPath;
   @override
+  @HiveField(13)
   @JsonKey(name: "release_date")
   final String? releaseDate;
   @override
+  @HiveField(14)
   final int? revenue;
   @override
+  @HiveField(15)
   final int? runtime;
   @override
+  @HiveField(16)
   final String? status;
   @override
+  @HiveField(17)
   final String? tagline;
   @override
+  @HiveField(18)
   final String? title;
   @override
+  @HiveField(19)
   final bool? video;
   @override
+  @HiveField(20)
   @JsonKey(name: "vote_average")
   final double? voteAverage;
   @override
+  @HiveField(21)
   @JsonKey(name: "vote_count")
   final int? voteCount;
 
@@ -559,83 +613,113 @@ class _$_MovieModel extends _MovieModel {
 
 abstract class _MovieModel extends MovieModel {
   const factory _MovieModel(
-      {final bool? adult,
-      @JsonKey(name: "backdrop_path") final String? backdropPath,
-      @JsonKey(name: "belongs_to_collection") final dynamic belongsToCollection,
-      final int? budget,
-      final List<GenreModel>? genres,
-      final String? homepage,
-      final int? id,
-      final String? imdbId,
-      @JsonKey(name: "original_language") final String? originalLanguage,
-      @JsonKey(name: "original_title") final String? originalTitle,
-      final String? overview,
-      final double? popularity,
-      @JsonKey(name: "poster_path") final String? posterPath,
-      @JsonKey(name: "release_date") final String? releaseDate,
-      final int? revenue,
-      final int? runtime,
-      final String? status,
-      final String? tagline,
-      final String? title,
-      final bool? video,
-      @JsonKey(name: "vote_average") final double? voteAverage,
-      @JsonKey(name: "vote_count") final int? voteCount}) = _$_MovieModel;
+      {@HiveField(0) final bool? adult,
+      @HiveField(1) @JsonKey(name: "backdrop_path") final String? backdropPath,
+      @HiveField(2)
+      @JsonKey(name: "belongs_to_collection")
+      final dynamic belongsToCollection,
+      @HiveField(3) final int? budget,
+      @HiveField(4) final List<GenreModel>? genres,
+      @HiveField(5) final String? homepage,
+      @HiveField(6) final int? id,
+      @HiveField(7) final String? imdbId,
+      @HiveField(8)
+      @JsonKey(name: "original_language")
+      final String? originalLanguage,
+      @HiveField(9)
+      @JsonKey(name: "original_title")
+      final String? originalTitle,
+      @HiveField(10) final String? overview,
+      @HiveField(11) final double? popularity,
+      @HiveField(12) @JsonKey(name: "poster_path") final String? posterPath,
+      @HiveField(13) @JsonKey(name: "release_date") final String? releaseDate,
+      @HiveField(14) final int? revenue,
+      @HiveField(15) final int? runtime,
+      @HiveField(16) final String? status,
+      @HiveField(17) final String? tagline,
+      @HiveField(18) final String? title,
+      @HiveField(19) final bool? video,
+      @HiveField(20) @JsonKey(name: "vote_average") final double? voteAverage,
+      @HiveField(21)
+      @JsonKey(name: "vote_count")
+      final int? voteCount}) = _$_MovieModel;
   const _MovieModel._() : super._();
 
   factory _MovieModel.fromJson(Map<String, dynamic> json) =
       _$_MovieModel.fromJson;
 
   @override
+  @HiveField(0)
   bool? get adult;
   @override
+  @HiveField(1)
   @JsonKey(name: "backdrop_path")
   String? get backdropPath;
   @override
+  @HiveField(2)
   @JsonKey(name: "belongs_to_collection")
   dynamic get belongsToCollection;
   @override
+  @HiveField(3)
   int? get budget;
   @override
+  @HiveField(4)
   List<GenreModel>? get genres;
   @override
+  @HiveField(5)
   String? get homepage;
   @override
+  @HiveField(6)
   int? get id;
   @override
+  @HiveField(7)
   String? get imdbId;
   @override
+  @HiveField(8)
   @JsonKey(name: "original_language")
   String? get originalLanguage;
   @override
+  @HiveField(9)
   @JsonKey(name: "original_title")
   String? get originalTitle;
   @override
+  @HiveField(10)
   String? get overview;
   @override
+  @HiveField(11)
   double? get popularity;
   @override
+  @HiveField(12)
   @JsonKey(name: "poster_path")
   String? get posterPath;
   @override
+  @HiveField(13)
   @JsonKey(name: "release_date")
   String? get releaseDate;
   @override
+  @HiveField(14)
   int? get revenue;
   @override
+  @HiveField(15)
   int? get runtime;
   @override
+  @HiveField(16)
   String? get status;
   @override
+  @HiveField(17)
   String? get tagline;
   @override
+  @HiveField(18)
   String? get title;
   @override
+  @HiveField(19)
   bool? get video;
   @override
+  @HiveField(20)
   @JsonKey(name: "vote_average")
   double? get voteAverage;
   @override
+  @HiveField(21)
   @JsonKey(name: "vote_count")
   int? get voteCount;
   @override
@@ -650,7 +734,9 @@ GenreModel _$GenreModelFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$GenreModel {
+  @HiveField(0)
   int? get id => throw _privateConstructorUsedError;
+  @HiveField(1)
   String? get name => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -665,7 +751,7 @@ abstract class $GenreModelCopyWith<$Res> {
           GenreModel value, $Res Function(GenreModel) then) =
       _$GenreModelCopyWithImpl<$Res, GenreModel>;
   @useResult
-  $Res call({int? id, String? name});
+  $Res call({@HiveField(0) int? id, @HiveField(1) String? name});
 }
 
 /// @nodoc
@@ -705,7 +791,7 @@ abstract class _$$_GenreModelCopyWith<$Res>
       __$$_GenreModelCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({int? id, String? name});
+  $Res call({@HiveField(0) int? id, @HiveField(1) String? name});
 }
 
 /// @nodoc
@@ -738,14 +824,17 @@ class __$$_GenreModelCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$_GenreModel extends _GenreModel {
-  const _$_GenreModel({this.id, this.name}) : super._();
+  const _$_GenreModel({@HiveField(0) this.id, @HiveField(1) this.name})
+      : super._();
 
   factory _$_GenreModel.fromJson(Map<String, dynamic> json) =>
       _$$_GenreModelFromJson(json);
 
   @override
+  @HiveField(0)
   final int? id;
   @override
+  @HiveField(1)
   final String? name;
 
   @override
@@ -781,16 +870,19 @@ class _$_GenreModel extends _GenreModel {
 }
 
 abstract class _GenreModel extends GenreModel {
-  const factory _GenreModel({final int? id, final String? name}) =
-      _$_GenreModel;
+  const factory _GenreModel(
+      {@HiveField(0) final int? id,
+      @HiveField(1) final String? name}) = _$_GenreModel;
   const _GenreModel._() : super._();
 
   factory _GenreModel.fromJson(Map<String, dynamic> json) =
       _$_GenreModel.fromJson;
 
   @override
+  @HiveField(0)
   int? get id;
   @override
+  @HiveField(1)
   String? get name;
   @override
   @JsonKey(ignore: true)

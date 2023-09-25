@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:kiwi/kiwi.dart';
+import 'package:movies_app/data/models/remote/movie_model.dart';
+import 'package:movies_app/data/models/remote/tv_model.dart';
 import 'package:movies_app/injection.dart';
 import 'package:movies_app/persentation/blocs/movies/now_playing/now_playing_movie_bloc.dart';
 import 'package:movies_app/persentation/blocs/movies/popular/popular_movies_bloc.dart';
@@ -13,14 +15,24 @@ import 'package:movies_app/persentation/blocs/tv/on_the-air/on_the_air_tv_bloc.d
 import 'package:movies_app/persentation/blocs/tv/popular/popular_tv_bloc.dart';
 import 'package:movies_app/persentation/blocs/tv/top_rated/top_rated_tv_bloc.dart';
 import 'package:movies_app/persentation/blocs/tv/trending/trending_tv_bloc.dart';
-import 'package:movies_app/persentation/pages/detail_page.dart';
+import 'package:movies_app/persentation/pages/detail_movies_page.dart';
+import 'package:movies_app/persentation/pages/detail_tv_page.dart';
 import 'package:movies_app/persentation/pages/home_page.dart';
 import 'package:movies_app/persentation/pages/search_page.dart';
 import 'package:movies_app/persentation/pages/splash_screen_page.dart';
 import 'package:movies_app/utils/theme_dark.dart';
 import 'package:movies_app/utils/theme_light.dart';
+import 'package:hive_flutter/hive_flutter.dart';
 
-void main() {
+void main() async {
+  await Hive.initFlutter();
+  Hive.registerAdapter(MovieModelAdapter());
+  Hive.registerAdapter(GenreModelAdapter());
+  Hive.registerAdapter(TvModelAdapter());
+  Hive.registerAdapter(TvGenreModelAdapter());
+
+  await Hive.openBox<MovieModel>('movies');
+  await Hive.openBox<TvModel>('tv');
   AppModule.setup();
   runApp(const MyApp());
 }
@@ -65,10 +77,10 @@ class MyApp extends StatelessWidget {
       ],
       child: MaterialApp.router(
         title: 'Flutter Demo',
-        themeMode: ThemeMode.dark,
         darkTheme: darkAppTheme(context),
         theme: lightAppTheme(context),
         routerConfig: _router,
+        debugShowCheckedModeBanner: false,
       ),
     );
   }
@@ -94,13 +106,19 @@ final GoRouter _router = GoRouter(
       },
     ),
     GoRoute(
-      path: "${DetailPage.routeName}/:id",
+      path: "${DetailMoviesPage.routeName}/:id",
       builder: (context, state) {
         final id = int.tryParse(state.pathParameters['id']!) ?? 0;
-        return DetailPage(
+        return DetailMoviesPage(
           id: id,
         );
       },
-    )
+    ),
+    GoRoute(
+        path: "${DetailTvPage.routeName}/:id",
+        builder: (context, state) {
+          final id = int.tryParse(state.pathParameters['id']!) ?? 0;
+          return DetailTvPage(id: id);
+        })
   ],
 );

@@ -1,14 +1,17 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:movies_app/domain/entities/tv.dart';
 import 'package:movies_app/persentation/blocs/tv/airing_today/airing_today_tv_bloc.dart';
 import 'package:movies_app/persentation/blocs/tv/on_the-air/on_the_air_tv_bloc.dart';
 import 'package:movies_app/persentation/blocs/tv/popular/popular_tv_bloc.dart';
 import 'package:movies_app/persentation/blocs/tv/top_rated/top_rated_tv_bloc.dart';
 import 'package:movies_app/persentation/blocs/tv/trending/trending_tv_bloc.dart';
+import 'package:movies_app/persentation/pages/detail_tv_page.dart';
 import 'package:movies_app/persentation/widgets/grid_card_widget.dart';
 import 'package:movies_app/persentation/widgets/trending_card_widget.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:movies_app/utils/color.dart';
+import 'package:movies_app/utils/constants.dart';
 
 class TVPage extends StatefulWidget {
   const TVPage({super.key});
@@ -30,16 +33,23 @@ class _TVPageState extends State<TVPage> {
 
   Widget _buildGridView(List<Tv> tv) {
     return GridView.builder(
-      itemCount: tv.length,
-      gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-        crossAxisCount: 3,
-        childAspectRatio: 100 / 145,
-        mainAxisSpacing: 18,
-        crossAxisSpacing: 13,
-      ),
-      itemBuilder: (context, index) =>
-          GridCardWidget(url: tv[index].posterPath!),
-    );
+        itemCount: tv.length,
+        gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+          crossAxisCount: 3,
+          childAspectRatio: 100 / 145,
+          mainAxisSpacing: 18,
+          crossAxisSpacing: 13,
+        ),
+        itemBuilder: (context, index) {
+          var item = tv[index];
+          return GestureDetector(
+            onTap: () => context.push("${DetailTvPage.routeName}/${item.id}"),
+            child: GridCardWidget(
+                url: item.posterPath != null
+                    ? '$imageUrl/${item.posterPath}'
+                    : notFoundImage),
+          );
+        });
   }
 
   @override
@@ -56,8 +66,11 @@ class _TVPageState extends State<TVPage> {
                   loaded: (tv) => ListView.builder(
                     itemCount: tv.length,
                     scrollDirection: Axis.horizontal,
-                    itemBuilder: (context, index) =>
-                        TrendingCardWidget(url: tv[index].posterPath!),
+                    itemBuilder: (context, index) => GestureDetector(
+                      onTap: () => context
+                          .push("${DetailTvPage.routeName}/${tv[index].id}"),
+                      child: TrendingCardWidget(url: tv[index].posterPath!),
+                    ),
                   ),
                   loading: () => Center(
                       child: CircularProgressIndicator(
@@ -115,7 +128,8 @@ class _TVPageState extends State<TVPage> {
                                 return state.maybeWhen(
                                   loaded: (tv) => _buildGridView(tv),
                                   loading: () => const Center(
-                                      child: CircularProgressIndicator()),
+                                      child: CircularProgressIndicator(
+                                          color: Colors.blue)),
                                   error: (message) => Text(message),
                                   orElse: () => const SizedBox(),
                                 );
@@ -126,7 +140,8 @@ class _TVPageState extends State<TVPage> {
                                 return state.maybeWhen(
                                   loaded: (tv) => _buildGridView(tv),
                                   loading: () => const Center(
-                                    child: CircularProgressIndicator(),
+                                    child: CircularProgressIndicator(
+                                        color: Colors.blue),
                                   ),
                                   error: (message) => Text(message),
                                   orElse: () => const SizedBox(),
@@ -138,7 +153,8 @@ class _TVPageState extends State<TVPage> {
                                 return state.maybeWhen(
                                   loaded: (tv) => _buildGridView(tv),
                                   loading: () => const Center(
-                                      child: CircularProgressIndicator()),
+                                      child: CircularProgressIndicator(
+                                          color: Colors.blue)),
                                   error: (message) => Text(message),
                                   orElse: () => const SizedBox(),
                                 );
@@ -149,7 +165,8 @@ class _TVPageState extends State<TVPage> {
                                 return state.maybeWhen(
                                   loaded: (tv) => _buildGridView(tv),
                                   loading: () => const Center(
-                                      child: CircularProgressIndicator()),
+                                      child: CircularProgressIndicator(
+                                          color: Colors.blue)),
                                   error: (message) => Text(message),
                                   orElse: () => const SizedBox(),
                                 );

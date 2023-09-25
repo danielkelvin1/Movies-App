@@ -51,6 +51,15 @@ class _$Injection extends Injection {
           (c) => GetCastMovies(c<MovieRepository>('movie_repo')),
           name: 'get_cast_movies')
       ..registerSingleton(
+          (c) => GetIsBookMarkMovies(c<MovieRepository>('movie_repo')),
+          name: 'get_is_book_mark_movies')
+      ..registerSingleton(
+          (c) => ChangeBookMarkMovies(c<MovieRepository>('movie_repo')),
+          name: 'change_book_mark_movies')
+      ..registerSingleton(
+          (c) => GetBookMarkMovies(c<MovieRepository>('movie_repo')),
+          name: 'get_book_mark_movies')
+      ..registerSingleton(
           (c) => GetSearchTv(repository: c<TvRepository>('tv_repo')),
           name: 'get_search_tv')
       ..registerSingleton(
@@ -68,6 +77,16 @@ class _$Injection extends Injection {
       ..registerSingleton(
           (c) => GetTopRatedTv(repository: c<TvRepository>('tv_repo')),
           name: 'get_top_rated_tv')
+      ..registerSingleton((c) => GetDetailsTv(c<TvRepository>('tv_repo')),
+          name: 'get_details_tv')
+      ..registerSingleton((c) => GetCastTv(c<TvRepository>('tv_repo')),
+          name: 'get_cast_tv')
+      ..registerSingleton((c) => GetIsBookMarkTv(c<TvRepository>('tv_repo')),
+          name: 'get_is_book_mark_tv')
+      ..registerSingleton((c) => ChangeBookMarkTv(c<TvRepository>('tv_repo')),
+          name: 'change_book_mark_tv')
+      ..registerSingleton((c) => GetBookMarkTv(c<TvRepository>('tv_repo')),
+          name: 'get_book_mark_tv')
       ..registerFactory(
           (c) => SearchMoviesBloc(c<GetSearchMovies>('get_search_movies')))
       ..registerFactory(
@@ -84,6 +103,11 @@ class _$Injection extends Injection {
           (c) => DetailsMoviesBloc(c<GetDetailsMovies>('get_details_movies')))
       ..registerFactory(
           (c) => CastMoviesBloc(c<GetCastMovies>('get_cast_movies')))
+      ..registerFactory((c) => IsBookMarkMovieBloc(
+          c<GetIsBookMarkMovies>('get_is_book_mark_movies'),
+          c<ChangeBookMarkMovies>('change_book_mark_movies')))
+      ..registerFactory((c) =>
+          BookMarkMoviesBloc(c<GetBookMarkMovies>('get_book_mark_movies')))
       ..registerFactory((c) => SearchTvBloc(c<GetSearchTv>('get_search_tv')))
       ..registerFactory(
           (c) => TrendingTvBloc(c<GetTrendingTv>('get_trending_tv')))
@@ -93,6 +117,13 @@ class _$Injection extends Injection {
           (c) => OnTheAirTvBloc(c<GetOnTheAirTv>('get_on_the_air_tv')))
       ..registerFactory((c) => PopularTvBloc(c<GetPopularTv>('get_popular_tv')))
       ..registerFactory(
-          (c) => TopRatedTvBloc(c<GetTopRatedTv>('get_top_rated_tv')));
+          (c) => TopRatedTvBloc(c<GetTopRatedTv>('get_top_rated_tv')))
+      ..registerFactory((c) => DetailsTvBloc(c<GetDetailsTv>('get_details_tv')))
+      ..registerFactory((c) => CastTvBloc(c<GetCastTv>('get_cast_tv')))
+      ..registerFactory((c) => IsBookMarkTvBloc(
+          c<GetIsBookMarkTv>('get_is_book_mark_tv'),
+          c<ChangeBookMarkTv>('change_book_mark_tv')))
+      ..registerFactory(
+          (c) => BookMarkTvBloc(c<GetBookMarkTv>('get_book_mark_tv')));
   }
 }

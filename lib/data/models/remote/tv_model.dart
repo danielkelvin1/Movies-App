@@ -1,4 +1,5 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:hive_flutter/hive_flutter.dart';
 
 import 'package:movies_app/domain/entities/tv.dart';
 
@@ -7,31 +8,30 @@ part 'tv_model.g.dart';
 
 @immutable
 @freezed
-abstract class TvModel with _$TvModel {
+@HiveType(typeId: 3)
+class TvModel with _$TvModel {
   const TvModel._();
 
   const factory TvModel({
-    @JsonKey(name: "backdrop_path") String? backdropPath,
-    @JsonKey(name: "created_by") List<dynamic>? createdBy,
-    @JsonKey(name: "episode_run_time") List<int>? episodeRunTime,
-    @JsonKey(name: "first_air_date") String? firstAirDate,
-    List<GenreModel>? genres,
-    String? homepage,
-    int? id,
-    @JsonKey(name: "in_production") bool? inProduction,
-    List<String>? languages,
-    @JsonKey(name: "last_air_date") DateTime? lastAirDate,
-    @JsonKey(name: "last_episode_to_air") TEpisodeToAirModel? lastEpisodeToAir,
-    String? name,
-    @JsonKey(name: "next_episode_to_air") TEpisodeToAirModel? nextEpisodeToAir,
-    @JsonKey(name: "number_of_episodes") int? numberOfEpisodes,
-    @JsonKey(name: "number_of_seasons") int? numberOfSeasons,
-    String? overview,
-    double? popularity,
-    @JsonKey(name: "poster_path") String? posterPath,
-    String? status,
-    @JsonKey(name: "vote_average") double? voteAverage,
-    @JsonKey(name: "vote_count") int? voteCount,
+    @HiveField(0) @JsonKey(name: "backdrop_path") String? backdropPath,
+    @HiveField(1) @JsonKey(name: "created_by") List<dynamic>? createdBy,
+    @HiveField(2) @JsonKey(name: "episode_run_time") List<int>? episodeRunTime,
+    @HiveField(3) @JsonKey(name: "first_air_date") String? firstAirDate,
+    @HiveField(4) List<TvGenreModel>? genres,
+    @HiveField(5) String? homepage,
+    @HiveField(6) int? id,
+    @HiveField(7) @JsonKey(name: "in_production") bool? inProduction,
+    @HiveField(8) List<String>? languages,
+    @HiveField(9) @JsonKey(name: "last_air_date") String? lastAirDate,
+    @HiveField(10) @JsonKey(name: "number_of_episodes") int? numberOfEpisodes,
+    @HiveField(11) @JsonKey(name: "number_of_seasons") int? numberOfSeasons,
+    @HiveField(12) String? overview,
+    @HiveField(13) double? popularity,
+    @HiveField(14) @JsonKey(name: 'original_name') String? originalName,
+    @HiveField(15) @JsonKey(name: "poster_path") String? posterPath,
+    @HiveField(16) String? status,
+    @HiveField(17) @JsonKey(name: "vote_average") double? voteAverage,
+    @HiveField(18) @JsonKey(name: "vote_count") int? voteCount,
   }) = _TvModel;
 
   factory TvModel.fromJson(Map<String, dynamic> json) =>
@@ -48,9 +48,7 @@ abstract class TvModel with _$TvModel {
       inProduction: inProduction,
       languages: languages,
       lastAirDate: lastAirDate,
-      lastEpisodeToAir: lastEpisodeToAir?.toEntity(),
-      name: name,
-      nextEpisodeToAir: nextEpisodeToAir?.toEntity(),
+      originalName: originalName,
       numberOfEpisodes: numberOfEpisodes,
       numberOfSeasons: numberOfSeasons,
       overview: overview,
@@ -62,60 +60,20 @@ abstract class TvModel with _$TvModel {
 }
 
 @freezed
-abstract class GenreModel with _$GenreModel {
-  const GenreModel._();
+@HiveType(typeId: 4)
+class TvGenreModel with _$TvGenreModel {
+  const TvGenreModel._();
 
-  const factory GenreModel({
-    int? id,
-    String? name,
-  }) = _GenreModel;
+  const factory TvGenreModel({
+    @HiveField(0) int? id,
+    @HiveField(1) String? name,
+  }) = _TvGenreModel;
 
-  factory GenreModel.fromJson(Map<String, dynamic> json) =>
-      _$GenreModelFromJson(json);
+  factory TvGenreModel.fromJson(Map<String, dynamic> json) =>
+      _$TvGenreModelFromJson(json);
 
   Genre toEntity() => Genre(
         id: id,
         name: name,
-      );
-}
-
-@immutable
-@freezed
-abstract class TEpisodeToAirModel with _$TEpisodeToAirModel {
-  const TEpisodeToAirModel._();
-
-  const factory TEpisodeToAirModel({
-    int? id,
-    String? name,
-    String? overview,
-    @JsonKey(name: "vote_average") int? voteAverage,
-    @JsonKey(name: "vote_count") int? voteCount,
-    @JsonKey(name: "air_date") DateTime? airDate,
-    @JsonKey(name: "episode_number") int? episodeNumber,
-    @JsonKey(name: "episode_type") String? episodeType,
-    @JsonKey(name: "production_code") String? productionCode,
-    int? runtime,
-    @JsonKey(name: "season_number") int? seasonNumber,
-    @JsonKey(name: "show_id") int? showId,
-    @JsonKey(name: "still_path") String? stillPath,
-  }) = _TEpisodeToAirModel;
-
-  factory TEpisodeToAirModel.fromJson(Map<String, dynamic> json) =>
-      _$TEpisodeToAirModelFromJson(json);
-
-  TEpisodeToAir toEntity() => TEpisodeToAir(
-        airDate: airDate,
-        episodeNumber: episodeNumber,
-        episodeType: episodeType,
-        id: id,
-        name: name,
-        overview: overview,
-        productionCode: productionCode,
-        runtime: runtime,
-        seasonNumber: seasonNumber,
-        showId: showId,
-        stillPath: stillPath,
-        voteAverage: voteAverage,
-        voteCount: voteCount,
       );
 }

@@ -7,9 +7,10 @@ import 'package:movies_app/persentation/blocs/movies/popular/popular_movies_bloc
 import 'package:movies_app/persentation/blocs/movies/top_rated/top_rated_movies_bloc.dart';
 import 'package:movies_app/persentation/blocs/movies/trending/trending_movie_bloc.dart';
 import 'package:movies_app/persentation/blocs/movies/upcoming/upcoming_movies_bloc.dart';
-import 'package:movies_app/persentation/pages/detail_page.dart';
+import 'package:movies_app/persentation/pages/detail_movies_page.dart';
 import 'package:movies_app/persentation/widgets/grid_card_widget.dart';
 import 'package:movies_app/persentation/widgets/trending_card_widget.dart';
+import 'package:movies_app/utils/constants.dart';
 
 import '../../utils/color.dart';
 
@@ -43,8 +44,11 @@ class _MoviesPageState extends State<MoviesPage> {
       itemBuilder: (context, index) {
         final item = movies[index];
         return GestureDetector(
-          onTap: () => context.push("${DetailPage.routeName}/${item.id}"),
-          child: GridCardWidget(url: item.posterPath ?? ''),
+          onTap: () => context.push("${DetailMoviesPage.routeName}/${item.id}"),
+          child: GridCardWidget(
+              url: item.posterPath != null
+                  ? '$imageUrl/${item.posterPath}'
+                  : notFoundImage),
         );
       },
       itemCount: movies.length,
@@ -64,9 +68,12 @@ class _MoviesPageState extends State<MoviesPage> {
                   height: 210,
                   child: ListView.builder(
                     itemCount: movies.length,
-                    itemBuilder: (context, index) => TrendingCardWidget(
-                      url: movies[index].posterPath ??
-                          'https://bki.co.id/foto_berita/no_pict.jpg',
+                    itemBuilder: (context, index) => GestureDetector(
+                      onTap: () => context.push(
+                          "${DetailMoviesPage.routeName}/${movies[index].id}"),
+                      child: TrendingCardWidget(
+                        url: movies[index].posterPath ?? notFoundImage,
+                      ),
                     ),
                     scrollDirection: Axis.horizontal,
                   ),
@@ -134,7 +141,9 @@ class _MoviesPageState extends State<MoviesPage> {
                                 return state.maybeWhen(
                                   loaded: (movies) => _buildGridView(movies),
                                   loading: () => const Center(
-                                    child: CircularProgressIndicator(),
+                                    child: CircularProgressIndicator(
+                                      color: Colors.blue,
+                                    ),
                                   ),
                                   error: (message) => Text(message),
                                   orElse: () => const SizedBox(),
@@ -146,7 +155,8 @@ class _MoviesPageState extends State<MoviesPage> {
                                 return state.maybeWhen(
                                   loaded: (movies) => _buildGridView(movies),
                                   loading: () => const Center(
-                                    child: CircularProgressIndicator(),
+                                    child: CircularProgressIndicator(
+                                        color: Colors.blue),
                                   ),
                                   error: (message) => Text(message),
                                   orElse: () => const SizedBox(),
@@ -159,7 +169,8 @@ class _MoviesPageState extends State<MoviesPage> {
                                 return state.maybeWhen(
                                   loaded: (movies) => _buildGridView(movies),
                                   loading: () => const Center(
-                                    child: CircularProgressIndicator(),
+                                    child: CircularProgressIndicator(
+                                        color: Colors.blue),
                                   ),
                                   error: (message) => Text(message),
                                   orElse: () => const SizedBox(),
@@ -172,7 +183,8 @@ class _MoviesPageState extends State<MoviesPage> {
                                 return state.maybeWhen(
                                   loaded: (movies) => _buildGridView(movies),
                                   loading: () => const Center(
-                                    child: CircularProgressIndicator(),
+                                    child: CircularProgressIndicator(
+                                        color: Colors.blue),
                                   ),
                                   error: (message) => Text(message),
                                   orElse: () => const SizedBox(),

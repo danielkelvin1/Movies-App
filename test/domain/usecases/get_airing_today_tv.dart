@@ -15,7 +15,7 @@ void main() {
     usecase = GetAiringTodayTv(repository: repository);
   });
 
-  final tv = <Tv>[];
+  final tTv = <Tv>[];
 
   group("Get Airing Today Tv", () {
     group("execute", () {
@@ -23,11 +23,11 @@ void main() {
           "should get list of tv from the repository when execute function is called",
           () async {
         // arrange
-        when(repository.getAiringToday()).thenAnswer((_) async => Right(tv));
+        when(repository.getAiringToday()).thenAnswer((_) async => Right(tTv));
         // act
-        final result = Right(tv);
+        final result = await usecase.execute();
         // assert
-        expect(result, usecase.execute());
+        expect(result, Right(tTv));
       });
     });
   });

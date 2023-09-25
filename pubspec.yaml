@@ -19,6 +19,7 @@ dependencies:
   freezed_annotation: ^2.4.1
   go_router: ^10.0.0
   google_fonts: ^5.1.0
+  hive_flutter: ^1.1.0
   json_annotation: ^4.8.1
   json_serializable: ^6.7.0
   kiwi: ^4.1.0
@@ -29,6 +30,7 @@ dev_dependencies:
   flutter_test:
     sdk: flutter
   freezed: ^2.4.1
+  hive_generator: ^2.0.1
   kiwi_generator: ^4.1.0
   mockito: ^5.4.2
 

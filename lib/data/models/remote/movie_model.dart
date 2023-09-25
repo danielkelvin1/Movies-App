@@ -3,7 +3,7 @@
 //     final movieModel = movieModelFromJson(jsonString);
 
 import 'package:freezed_annotation/freezed_annotation.dart';
-
+import 'package:hive_flutter/hive_flutter.dart';
 import 'package:movies_app/domain/entities/movie.dart';
 
 part 'movie_model.freezed.dart';
@@ -11,31 +11,34 @@ part 'movie_model.g.dart';
 
 @immutable
 @freezed
-abstract class MovieModel with _$MovieModel {
+@HiveType(typeId: 1)
+class MovieModel with _$MovieModel {
   const MovieModel._();
   const factory MovieModel({
-    bool? adult,
-    @JsonKey(name: "backdrop_path") String? backdropPath,
-    @JsonKey(name: "belongs_to_collection") dynamic belongsToCollection,
-    int? budget,
-    List<GenreModel>? genres,
-    String? homepage,
-    int? id,
-    String? imdbId,
-    @JsonKey(name: "original_language") String? originalLanguage,
-    @JsonKey(name: "original_title") String? originalTitle,
-    String? overview,
-    double? popularity,
-    @JsonKey(name: "poster_path") String? posterPath,
-    @JsonKey(name: "release_date") String? releaseDate,
-    int? revenue,
-    int? runtime,
-    String? status,
-    String? tagline,
-    String? title,
-    bool? video,
-    @JsonKey(name: "vote_average") double? voteAverage,
-    @JsonKey(name: "vote_count") int? voteCount,
+    @HiveField(0) bool? adult,
+    @HiveField(1) @JsonKey(name: "backdrop_path") String? backdropPath,
+    @HiveField(2)
+    @JsonKey(name: "belongs_to_collection")
+    dynamic belongsToCollection,
+    @HiveField(3) int? budget,
+    @HiveField(4) List<GenreModel>? genres,
+    @HiveField(5) String? homepage,
+    @HiveField(6) int? id,
+    @HiveField(7) String? imdbId,
+    @HiveField(8) @JsonKey(name: "original_language") String? originalLanguage,
+    @HiveField(9) @JsonKey(name: "original_title") String? originalTitle,
+    @HiveField(10) String? overview,
+    @HiveField(11) double? popularity,
+    @HiveField(12) @JsonKey(name: "poster_path") String? posterPath,
+    @HiveField(13) @JsonKey(name: "release_date") String? releaseDate,
+    @HiveField(14) int? revenue,
+    @HiveField(15) int? runtime,
+    @HiveField(16) String? status,
+    @HiveField(17) String? tagline,
+    @HiveField(18) String? title,
+    @HiveField(19) bool? video,
+    @HiveField(20) @JsonKey(name: "vote_average") double? voteAverage,
+    @HiveField(21) @JsonKey(name: "vote_count") int? voteCount,
   }) = _MovieModel;
 
   factory MovieModel.fromJson(Map<String, dynamic> json) =>
@@ -69,11 +72,12 @@ abstract class MovieModel with _$MovieModel {
 
 @immutable
 @freezed
-abstract class GenreModel with _$GenreModel {
+@HiveType(typeId: 2)
+class GenreModel with _$GenreModel {
   const GenreModel._();
   const factory GenreModel({
-    int? id,
-    String? name,
+    @HiveField(0) int? id,
+    @HiveField(1) String? name,
   }) = _GenreModel;
 
   factory GenreModel.fromJson(Map<String, dynamic> json) =>

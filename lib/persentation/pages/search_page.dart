@@ -3,10 +3,13 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:kiwi/kiwi.dart';
 import 'package:movies_app/persentation/blocs/tv/search/serach_tv_bloc.dart';
+import 'package:movies_app/persentation/pages/detail_movies_page.dart';
+import 'package:movies_app/persentation/pages/detail_tv_page.dart';
 import 'package:movies_app/persentation/widgets/grid_card_widget.dart';
 import 'package:movies_app/persentation/widgets/search_widget.dart';
 import "package:movies_app/persentation/blocs/movies/search/search_movies_bloc.dart";
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:movies_app/utils/constants.dart';
 
 class SearchPage extends StatefulWidget {
   const SearchPage({Key? key, required this.mode}) : super(key: key);
@@ -122,7 +125,13 @@ class _SearchPageState extends State<SearchPage> {
                       ? const Center(
                           child: CircularProgressIndicator(color: Colors.blue),
                         )
-                      : GridCardWidget(url: item.posterPath);
+                      : GestureDetector(
+                          onTap: () => context
+                              .push("${DetailTvPage.routeName}/${item.id}"),
+                          child: GridCardWidget(
+                              url: item.posterPath != null
+                                  ? "$imageUrl/${item.posterPath}"
+                                  : notFoundImage));
                 },
               ),
             );
@@ -143,7 +152,7 @@ class _SearchPageState extends State<SearchPage> {
           initial: () => const SizedBox(),
           loading: () => const Center(
             child: CircularProgressIndicator(
-              color: Colors.red,
+              color: Colors.blue,
             ),
           ),
           loaded: (movies, hasNext) {
@@ -172,7 +181,13 @@ class _SearchPageState extends State<SearchPage> {
                             child:
                                 CircularProgressIndicator(color: Colors.blue),
                           )
-                        : GridCardWidget(url: item.posterPath);
+                        : GestureDetector(
+                            onTap: () => context.push(
+                                "${DetailMoviesPage.routeName}/${item.id}"),
+                            child: GridCardWidget(
+                                url: item.posterPath != null
+                                    ? "$imageUrl/${item.posterPath}"
+                                    : notFoundImage));
                   }),
             );
           },

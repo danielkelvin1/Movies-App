@@ -3,32 +3,36 @@
 
 import 'dart:ui';
 
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:go_router/go_router.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:kiwi/kiwi.dart';
 
 import 'package:movies_app/persentation/blocs/movies/cast/cast_movies_bloc.dart';
 import 'package:movies_app/persentation/blocs/movies/details/details_movies_bloc.dart';
+import 'package:movies_app/persentation/blocs/movies/is_book_mark/is_book_mark_bloc.dart';
 import 'package:movies_app/persentation/widgets/actor_circle_widget.dart';
 import 'package:movies_app/utils/color.dart';
 import 'package:movies_app/utils/constants.dart';
 
-class DetailPage extends StatefulWidget {
-  const DetailPage({
+class DetailMoviesPage extends StatefulWidget {
+  const DetailMoviesPage({
     Key? key,
     required this.id,
   }) : super(key: key);
   final int id;
-  static String routeName = "/detail";
+  static String routeName = "/detail-movies";
 
   @override
-  State<DetailPage> createState() => _DetailPageState();
+  State<DetailMoviesPage> createState() => _DetailMoviesPageState();
 }
 
-class _DetailPageState extends State<DetailPage> {
+class _DetailMoviesPageState extends State<DetailMoviesPage> {
   late DetailsMoviesBloc _detailsMoviesBloc;
   late CastMoviesBloc _castMoviesBloc;
+  late IsBookMarkMovieBloc _isBookMarkBloc;
 
   @override
   void initState() {
@@ -36,8 +40,10 @@ class _DetailPageState extends State<DetailPage> {
     super.initState();
     _detailsMoviesBloc = KiwiContainer().resolve<DetailsMoviesBloc>();
     _castMoviesBloc = KiwiContainer().resolve<CastMoviesBloc>();
+    _isBookMarkBloc = KiwiContainer().resolve<IsBookMarkMovieBloc>();
     _detailsMoviesBloc.add(DetailsMoviesEvent.get(widget.id));
     _castMoviesBloc.add(CastMoviesEvent.get(widget.id));
+    _isBookMarkBloc.add(IsBookMarkMovieEvent.get(widget.id));
   }
 
   Widget bodyTop() {
@@ -54,27 +60,30 @@ class _DetailPageState extends State<DetailPage> {
           loaded: (movie) => Stack(
             clipBehavior: Clip.none,
             children: [
-              Container(
+              SizedBox(
                 width: MediaQuery.of(context).size.width,
                 height: 210,
-                decoration: BoxDecoration(
+                child: ClipRRect(
                   borderRadius: const BorderRadius.only(
                     bottomLeft: Radius.circular(16),
                     bottomRight: Radius.circular(16),
                   ),
-                  image: DecorationImage(
-                    image: NetworkImage(
-                      movie.backdropPath != null
-                          ? '$imageUrlOriginal/${movie.backdropPath}'
-                          : 'https://st4.depositphotos.com/14953852/22772/v/450/depositphotos_227724992-stock-illustration-image-available-icon-flat-vector.jpg',
-                    ),
+                  child: CachedNetworkImage(
+                    imageUrl: movie.backdropPath != null
+                        ? '$imageUrlOriginal/${movie.backdropPath}'
+                        : notFoundImage,
                     fit: BoxFit.cover,
+                    placeholder: (context, url) => const Center(
+                      child: CircularProgressIndicator(
+                        color: Colors.blue,
+                      ),
+                    ),
                   ),
                 ),
               ),
               Positioned(
-                bottom: 8,
-                right: 8,
+                bottom: 12,
+                right: 12,
                 child: ClipRRect(
                   borderRadius: BorderRadius.circular(16),
                   child: Container(
@@ -82,10 +91,7 @@ class _DetailPageState extends State<DetailPage> {
                       horizontal: 8,
                       vertical: 4,
                     ),
-                    decoration: BoxDecoration(
-                      color: Colors.white.withOpacity(0.1),
-                      borderRadius: BorderRadius.circular(16),
-                    ),
+                    color: Colors.white.withOpacity(0.1),
                     child: BackdropFilter(
                       filter: ImageFilter.blur(sigmaX: 5, sigmaY: 5),
                       child: Row(
@@ -116,18 +122,23 @@ class _DetailPageState extends State<DetailPage> {
                   child: Row(
                     crossAxisAlignment: CrossAxisAlignment.end,
                     children: [
-                      Container(
+                      SizedBox(
                         width: 95,
                         height: 120,
-                        decoration: BoxDecoration(
+                        child: ClipRRect(
                           borderRadius: const BorderRadius.all(
                             Radius.circular(16),
                           ),
-                          image: DecorationImage(
-                            image: NetworkImage(
-                              '$imageUrl/${movie.posterPath}',
-                            ),
+                          child: CachedNetworkImage(
+                            imageUrl: movie.posterPath != null
+                                ? '$imageUrlOriginal/${movie.posterPath}'
+                                : notFoundImage,
                             fit: BoxFit.cover,
+                            placeholder: (context, url) => const Center(
+                              child: CircularProgressIndicator(
+                                color: Colors.blue,
+                              ),
+                            ),
                           ),
                         ),
                       ),
@@ -211,6 +222,11 @@ class _DetailPageState extends State<DetailPage> {
                               color: Colors.blue,
                             ),
                           ),
+                          error: (message) => Center(
+                            child: ListView(
+                              children: [Text(message)],
+                            ),
+                          ),
                           loaded: (movie) => Text(
                             movie.overview ?? '',
                             textAlign: TextAlign.justify,
@@ -237,7 +253,7 @@ class _DetailPageState extends State<DetailPage> {
                               return ActorCircleWidget(
                                 imageCircle: item.profilePath != null
                                     ? '$imageUrlOriginal/${item.profilePath}'
-                                    : 'https://st4.depositphotos.com/14953852/22772/v/450/depositphotos_227724992-stock-illustration-image-available-icon-flat-vector.jpg',
+                                    : notFoundImage,
                                 titleCirlce: item.name ?? '',
                               );
                             },
@@ -261,7 +277,39 @@ class _DetailPageState extends State<DetailPage> {
     return Scaffold(
       appBar: AppBar(
         title: const Text("Details"),
-        actions: const [],
+        actions: [
+          BlocBuilder<DetailsMoviesBloc, DetailsMoviesState>(
+            bloc: _detailsMoviesBloc,
+            builder: (context, state) => state.maybeWhen(
+              loaded: (movie) =>
+                  BlocBuilder<IsBookMarkMovieBloc, IsBookMarkMovieState>(
+                bloc: _isBookMarkBloc,
+                builder: (context, state) => state.maybeWhen(
+                  loaded: (isBookMark) => GestureDetector(
+                    onTap: () => _isBookMarkBloc.add(
+                      IsBookMarkMovieEvent.change(widget.id, movie),
+                    ),
+                    child: Icon(
+                      isBookMark ? Icons.bookmark : Icons.bookmark_border,
+                      size: 30,
+                    ),
+                  ),
+                  orElse: () => const SizedBox(),
+                ),
+              ),
+              orElse: () => const SizedBox(),
+            ),
+          ),
+          const SizedBox(
+            width: 10.0,
+          ),
+        ],
+        leading: InkWell(
+          onTap: () => context.pop(),
+          child: const Icon(
+            Icons.arrow_back_ios,
+          ),
+        ),
         backgroundColor: Colors.transparent,
       ),
       body: Column(
@@ -274,46 +322,48 @@ class _DetailPageState extends State<DetailPage> {
             bloc: _detailsMoviesBloc,
             builder: (context, state) {
               return state.maybeWhen(
-                loaded: (movie) => Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    const Icon(
-                      Icons.calendar_today_outlined,
-                    ),
-                    const SizedBox(
-                      width: 4.0,
-                    ),
-                    Text(movie.releaseDate?.split('-')[0] ?? ''),
-                    const SizedBox(
-                      width: 12.0,
-                    ),
-                    const Text('|'),
-                    const SizedBox(
-                      width: 12.0,
-                    ),
-                    const Icon(
-                      Icons.access_time_outlined,
-                    ),
-                    const SizedBox(
-                      width: 4.0,
-                    ),
-                    Text('${movie.runtime} Minutes'),
-                    const SizedBox(
-                      width: 12.0,
-                    ),
-                    const Text('|'),
-                    const SizedBox(
-                      width: 12.0,
-                    ),
-                    const Icon(
-                      Icons.movie_creation_outlined,
-                    ),
-                    const SizedBox(
-                      width: 4.0,
-                    ),
-                    Text(movie.genres![0].name ?? ''),
-                  ],
-                ),
+                loaded: (movie) {
+                  return Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      const Icon(
+                        Icons.calendar_today_outlined,
+                      ),
+                      const SizedBox(
+                        width: 4.0,
+                      ),
+                      Text(movie.releaseDate?.split('-')[0] ?? ''),
+                      const SizedBox(
+                        width: 12.0,
+                      ),
+                      const Text('|'),
+                      const SizedBox(
+                        width: 12.0,
+                      ),
+                      const Icon(
+                        Icons.access_time_outlined,
+                      ),
+                      const SizedBox(
+                        width: 4.0,
+                      ),
+                      Text('${movie.runtime} Minutes'),
+                      const SizedBox(
+                        width: 12.0,
+                      ),
+                      const Text('|'),
+                      const SizedBox(
+                        width: 12.0,
+                      ),
+                      const Icon(
+                        Icons.movie_creation_outlined,
+                      ),
+                      const SizedBox(
+                        width: 4.0,
+                      ),
+                      Text(movie.genres?.firstOrNull?.name ?? 'No Data'),
+                    ],
+                  );
+                },
                 orElse: () => const SizedBox(),
               );
             },

@@ -2,6 +2,7 @@ import 'dart:io';
 
 import 'package:dartz/dartz.dart';
 import 'package:dio/dio.dart';
+import 'package:movies_app/data/config/boxes.dart';
 import 'package:movies_app/data/datasources/remote/movie_remote_data_source.dart';
 import 'package:movies_app/domain/entities/cast_movie.dart';
 import 'package:movies_app/domain/entities/movie.dart';
@@ -156,6 +157,44 @@ class MovieRepositoryImpl extends MovieRepository {
             ConnectionFailure("failed to connect ot the network"));
       }
       return const Left(ServerFailure(''));
+    }
+  }
+
+  @override
+  Either<Failure, bool> isBookMark(int id) {
+    try {
+      final box = Boxes.getMovies();
+      final result = box.get('$id');
+      return Right(result != null ? true : false);
+    } catch (e) {
+      return const Left(DatabaseFailure('Get Data Failed'));
+    }
+  }
+
+  @override
+  Either<Failure, bool> changeBookMark(int id, Movie movie) {
+    try {
+      final box = Boxes.getMovies();
+      final isThereBookMark = box.get('$id');
+      isThereBookMark != null
+          ? box.delete('$id')
+          : box.put('$id', movie.toMovieModel());
+
+      final result = box.get('$id');
+      return Right(result != null ? true : false);
+    } catch (e) {
+      return const Left(DatabaseFailure('Failed Change Data'));
+    }
+  }
+
+  @override
+  Either<Failure, List<Movie>> getBookMark() {
+    try {
+      final box = Boxes.getMovies();
+      final result = box.values.map((e) => e.toEntity()).toList();
+      return (Right(result));
+    } catch (e) {
+      return const Left(DatabaseFailure('Get Data Failed'));
     }
   }
 }

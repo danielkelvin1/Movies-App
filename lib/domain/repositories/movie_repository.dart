@@ -12,4 +12,7 @@ abstract class MovieRepository {
   Future<Either<Failure, List<Movie>>> getSearch(int page, String search);
   Future<Either<Failure, Movie>> getDetails(int id);
   Future<Either<Failure, List<CastMovie>>> getCast(int id);
+  Either<Failure, bool> isBookMark(int id);
+  Either<Failure, bool> changeBookMark(int id, Movie movie);
+  Either<Failure, List<Movie>> getBookMark();
 }

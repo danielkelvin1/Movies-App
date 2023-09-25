@@ -1,5 +1,7 @@
 import 'package:dio/dio.dart';
 import 'package:movies_app/data/models/remote/cast_movie_response.dart';
+import 'package:movies_app/data/models/remote/cast_tv_model.dart';
+import 'package:movies_app/data/models/remote/cast_tv_response.dart';
 import 'package:movies_app/data/models/remote/movie_model.dart';
 import 'package:movies_app/data/models/remote/cast_movie_model.dart';
 import 'package:movies_app/data/models/remote/movie_response.dart';
@@ -91,6 +93,24 @@ class ApiService {
   }
 
   //TV Api Service
+  Future<TvModel> getDetailsTv(int id) async {
+    final response = await dio.get('$baseUrl/tv/$id?language=en-US');
+    if (response.statusCode == 200) {
+      return TvModel.fromJson(response.data);
+    } else {
+      throw ServerException();
+    }
+  }
+
+  Future<List<CastTvModel>> getCastTv(int id) async {
+    final response = await dio.get('$baseUrl/tv/$id/credits?language=en-US');
+    if (response.statusCode == 200) {
+      return CastTvResponse.fromJson(response.data).cast;
+    } else {
+      throw ServerException();
+    }
+  }
+
   Future<List<TvModel>> getSearchTv(int page, String search) async {
     final response = await dio.get(
         '$baseUrl/search/tv?query=$search&include_adult=false&language=en-US&page=$page');

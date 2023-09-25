@@ -7,9 +7,17 @@ import 'package:movies_app/data/repositories/movie_repository_impl.dart';
 import 'package:movies_app/data/repositories/tv_repository_impl.dart';
 import 'package:movies_app/domain/repositories/movie_repository.dart';
 import 'package:movies_app/domain/repositories/tv_repository.dart';
+import 'package:movies_app/domain/usecase/change_book_mark_movies.dart';
+import 'package:movies_app/domain/usecase/change_book_mark_tv.dart';
 import 'package:movies_app/domain/usecase/get_airing_today_tv.dart';
+import 'package:movies_app/domain/usecase/get_book_mark_movies.dart';
+import 'package:movies_app/domain/usecase/get_book_mark_tv.dart';
 import 'package:movies_app/domain/usecase/get_cast_movies.dart';
+import 'package:movies_app/domain/usecase/get_cast_tv.dart';
 import 'package:movies_app/domain/usecase/get_details_movies.dart';
+import 'package:movies_app/domain/usecase/get_details_tv.dart';
+import 'package:movies_app/domain/usecase/get_is_book_mark_movies.dart';
+import 'package:movies_app/domain/usecase/get_is_book_mark_tv.dart';
 import 'package:movies_app/domain/usecase/get_now_playing_movies.dart';
 import 'package:movies_app/domain/usecase/get_on_the_air_tv.dart';
 import 'package:movies_app/domain/usecase/get_popular_movies.dart';
@@ -21,8 +29,10 @@ import 'package:movies_app/domain/usecase/get_trending_movies.dart';
 import 'package:movies_app/domain/usecase/get_search_movies.dart';
 import 'package:movies_app/domain/usecase/get_trending_tv.dart';
 import 'package:movies_app/domain/usecase/get_upcoming_movies.dart';
+import 'package:movies_app/persentation/blocs/movies/book_mark/book_mark_movies_bloc.dart';
 import 'package:movies_app/persentation/blocs/movies/cast/cast_movies_bloc.dart';
 import 'package:movies_app/persentation/blocs/movies/details/details_movies_bloc.dart';
+import 'package:movies_app/persentation/blocs/movies/is_book_mark/is_book_mark_bloc.dart';
 import 'package:movies_app/persentation/blocs/movies/now_playing/now_playing_movie_bloc.dart';
 import 'package:movies_app/persentation/blocs/movies/popular/popular_movies_bloc.dart';
 import 'package:movies_app/persentation/blocs/movies/search/search_movies_bloc.dart';
@@ -30,6 +40,10 @@ import 'package:movies_app/persentation/blocs/movies/top_rated/top_rated_movies_
 import 'package:movies_app/persentation/blocs/movies/trending/trending_movie_bloc.dart';
 import 'package:movies_app/persentation/blocs/movies/upcoming/upcoming_movies_bloc.dart';
 import 'package:movies_app/persentation/blocs/tv/airing_today/airing_today_tv_bloc.dart';
+import 'package:movies_app/persentation/blocs/tv/book_mark/book_mark_tv_bloc.dart';
+import 'package:movies_app/persentation/blocs/tv/cast/cast_tv_bloc.dart';
+import 'package:movies_app/persentation/blocs/tv/details/details_tv_bloc.dart';
+import 'package:movies_app/persentation/blocs/tv/is_book_mark/is_book_mark_tv_bloc.dart';
 import 'package:movies_app/persentation/blocs/tv/on_the-air/on_the_air_tv_bloc.dart';
 import 'package:movies_app/persentation/blocs/tv/popular/popular_tv_bloc.dart';
 import 'package:movies_app/persentation/blocs/tv/top_rated/top_rated_tv_bloc.dart';
@@ -80,6 +94,14 @@ abstract class Injection {
       resolvers: {MovieRepository: 'movie_repo'}, name: 'get_details_movies')
   @Register.singleton(GetCastMovies,
       resolvers: {MovieRepository: 'movie_repo'}, name: 'get_cast_movies')
+  @Register.singleton(GetIsBookMarkMovies,
+      resolvers: {MovieRepository: 'movie_repo'},
+      name: 'get_is_book_mark_movies')
+  @Register.singleton(ChangeBookMarkMovies,
+      resolvers: {MovieRepository: 'movie_repo'},
+      name: 'change_book_mark_movies')
+  @Register.singleton(GetBookMarkMovies,
+      resolvers: {MovieRepository: 'movie_repo'}, name: 'get_book_mark_movies')
   @Register.singleton(GetSearchTv,
       resolvers: {TvRepository: 'tv_repo'}, name: 'get_search_tv')
   @Register.singleton(GetTrendingTv,
@@ -92,6 +114,16 @@ abstract class Injection {
       resolvers: {TvRepository: 'tv_repo'}, name: 'get_popular_tv')
   @Register.singleton(GetTopRatedTv,
       resolvers: {TvRepository: 'tv_repo'}, name: 'get_top_rated_tv')
+  @Register.singleton(GetDetailsTv,
+      resolvers: {TvRepository: 'tv_repo'}, name: 'get_details_tv')
+  @Register.singleton(GetCastTv,
+      resolvers: {TvRepository: 'tv_repo'}, name: 'get_cast_tv')
+  @Register.singleton(GetIsBookMarkTv,
+      resolvers: {TvRepository: 'tv_repo'}, name: 'get_is_book_mark_tv')
+  @Register.singleton(ChangeBookMarkTv,
+      resolvers: {TvRepository: 'tv_repo'}, name: 'change_book_mark_tv')
+  @Register.singleton(GetBookMarkTv,
+      resolvers: {TvRepository: 'tv_repo'}, name: 'get_book_mark_tv')
   // bloc
   @Register.factory(SearchMoviesBloc,
       resolvers: {GetSearchMovies: 'get_search_movies'})
@@ -109,6 +141,12 @@ abstract class Injection {
       resolvers: {GetDetailsMovies: 'get_details_movies'})
   @Register.factory(CastMoviesBloc,
       resolvers: {GetCastMovies: 'get_cast_movies'})
+  @Register.factory(IsBookMarkMovieBloc, resolvers: {
+    GetIsBookMarkMovies: 'get_is_book_mark_movies',
+    ChangeBookMarkMovies: 'change_book_mark_movies'
+  })
+  @Register.factory(BookMarkMoviesBloc,
+      resolvers: {GetBookMarkMovies: 'get_book_mark_movies'})
   @Register.factory(SearchTvBloc, resolvers: {GetSearchTv: 'get_search_tv'})
   @Register.factory(TrendingTvBloc,
       resolvers: {GetTrendingTv: 'get_trending_tv'})
@@ -119,6 +157,14 @@ abstract class Injection {
   @Register.factory(PopularTvBloc, resolvers: {GetPopularTv: 'get_popular_tv'})
   @Register.factory(TopRatedTvBloc,
       resolvers: {GetTopRatedTv: 'get_top_rated_tv'})
+  @Register.factory(DetailsTvBloc, resolvers: {GetDetailsTv: 'get_details_tv'})
+  @Register.factory(CastTvBloc, resolvers: {GetCastTv: 'get_cast_tv'})
+  @Register.factory(IsBookMarkTvBloc, resolvers: {
+    GetIsBookMarkTv: 'get_is_book_mark_tv',
+    ChangeBookMarkTv: 'change_book_mark_tv'
+  })
+  @Register.factory(BookMarkTvBloc,
+      resolvers: {GetBookMarkTv: 'get_book_mark_tv'})
   void configure();
 }
 

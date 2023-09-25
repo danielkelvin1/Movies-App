@@ -1,4 +1,5 @@
 import 'package:equatable/equatable.dart';
+import 'package:movies_app/data/models/remote/tv_model.dart';
 
 class Tv extends Equatable {
   final String? backdropPath;
@@ -10,10 +11,8 @@ class Tv extends Equatable {
   final int? id;
   final bool? inProduction;
   final List<String>? languages;
-  final DateTime? lastAirDate;
-  final TEpisodeToAir? lastEpisodeToAir;
-  final String? name;
-  final TEpisodeToAir? nextEpisodeToAir;
+  final String? lastAirDate;
+  final String? originalName;
   final int? numberOfEpisodes;
   final int? numberOfSeasons;
   final String? overview;
@@ -34,9 +33,7 @@ class Tv extends Equatable {
     this.inProduction,
     this.languages,
     this.lastAirDate,
-    this.lastEpisodeToAir,
-    this.name,
-    this.nextEpisodeToAir,
+    this.originalName,
     this.numberOfEpisodes,
     this.numberOfSeasons,
     this.overview,
@@ -46,6 +43,28 @@ class Tv extends Equatable {
     this.voteAverage,
     this.voteCount,
   });
+
+  TvModel toTvModel() => TvModel(
+        backdropPath: backdropPath,
+        createdBy: createdBy,
+        episodeRunTime: episodeRunTime,
+        firstAirDate: firstAirDate,
+        genres: genres?.map((e) => e.toTvGenreModel()).toList(),
+        homepage: homepage,
+        id: id,
+        inProduction: inProduction,
+        languages: languages,
+        lastAirDate: lastAirDate,
+        numberOfEpisodes: numberOfEpisodes,
+        numberOfSeasons: numberOfSeasons,
+        originalName: originalName,
+        overview: overview,
+        popularity: popularity,
+        posterPath: posterPath,
+        status: status,
+        voteAverage: voteAverage,
+        voteCount: voteCount,
+      );
 
   @override
   // TODO: implement props
@@ -60,9 +79,7 @@ class Tv extends Equatable {
         inProduction,
         languages,
         lastAirDate,
-        lastEpisodeToAir,
-        name,
-        nextEpisodeToAir,
+        originalName,
         numberOfEpisodes,
         numberOfSeasons,
         overview,
@@ -83,60 +100,12 @@ class Genre extends Equatable {
     this.name,
   });
 
-  @override
-  // TODO: implement props
-  List<Object?> get props => [
-        id,
-        name,
-      ];
-}
-
-class TEpisodeToAir extends Equatable {
-  final int? id;
-  final String? name;
-  final String? overview;
-  final int? voteAverage;
-  final int? voteCount;
-  final DateTime? airDate;
-  final int? episodeNumber;
-  final String? episodeType;
-  final String? productionCode;
-  final int? runtime;
-  final int? seasonNumber;
-  final int? showId;
-  final String? stillPath;
-
-  const TEpisodeToAir({
-    this.id,
-    this.name,
-    this.overview,
-    this.voteAverage,
-    this.voteCount,
-    this.airDate,
-    this.episodeNumber,
-    this.episodeType,
-    this.productionCode,
-    this.runtime,
-    this.seasonNumber,
-    this.showId,
-    this.stillPath,
-  });
+  TvGenreModel toTvGenreModel() => TvGenreModel(id: id, name: name);
 
   @override
   // TODO: implement props
   List<Object?> get props => [
         id,
         name,
-        overview,
-        voteAverage,
-        voteCount,
-        airDate,
-        episodeNumber,
-        episodeType,
-        productionCode,
-        runtime,
-        seasonNumber,
-        showId,
-        stillPath,
       ];
 }
