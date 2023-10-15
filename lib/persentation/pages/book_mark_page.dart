@@ -36,49 +36,86 @@ class _BookMarkPageState extends State<BookMarkPage> {
   }
 
   Widget _buildGridViewMovie(List<Movie> movie) {
-    return GridView.builder(
-      itemCount: movie.length,
-      gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-        crossAxisCount: 2,
-        childAspectRatio: 1 / 1.45,
-        mainAxisSpacing: 18,
-        crossAxisSpacing: 13,
-      ),
-      itemBuilder: (context, index) {
-        var item = movie[index];
-        return GestureDetector(
-          onTap: () {
-            print(item.id);
-            context.push("${DetailMoviesPage.routeName}/${item.id}");
-          },
-          child: GridCardWidget(
-              url: item.posterPath != null
-                  ? '$imageUrl/${item.posterPath}'
-                  : notFoundImage),
-        );
+    return RefreshIndicator(
+      color: Colors.blue,
+      onRefresh: () async {
+        _bookMarkMoviesBloc.add(const BookMarkMoviesEvent.get());
       },
+      child: movie.isEmpty
+          ? Center(
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Text(
+                    'No Bookmarked Movies',
+                    style: Theme.of(context).textTheme.titleMedium,
+                  ),
+                ],
+              ),
+            )
+          : GridView.builder(
+              itemCount: movie.length,
+              gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                crossAxisCount: 2,
+                childAspectRatio: 1 / 1.45,
+                mainAxisSpacing: 18,
+                crossAxisSpacing: 13,
+              ),
+              itemBuilder: (context, index) {
+                var item = movie[index];
+                return GestureDetector(
+                  onTap: () {
+                    print(item.id);
+                    context.push("${DetailMoviesPage.routeName}/${item.id}");
+                  },
+                  child: GridCardWidget(
+                      url: item.posterPath != null
+                          ? '$imageUrl/${item.posterPath}'
+                          : notFoundImage),
+                );
+              },
+            ),
     );
   }
 
   Widget _buildGridViewTv(List<Tv> tv) {
-    return GridView.builder(
-      itemCount: tv.length,
-      gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-        crossAxisCount: 2,
-        childAspectRatio: 1 / 1.45,
-        mainAxisSpacing: 18,
-        crossAxisSpacing: 13,
-      ),
-      itemBuilder: (context, index) {
-        var item = tv[index];
-        return GestureDetector(
-          onTap: () => context.push("${DetailTvPage.routeName}/${item.id}"),
-          child: GridCardWidget(
-              url: item.posterPath != null
-                  ? '$imageUrl/${item.posterPath}'
-                  : notFoundImage),
-        );
+    return RefreshIndicator(
+      color: Colors.blue,
+      onRefresh: () async {
+        _bookMarkTvBloc.add(const BookMarkTvEvent.get());
       },
+      child: tv.isEmpty
+          ? Center(
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Text(
+                    'No Tv Series Bookmarked',
+                    style: Theme.of(context).textTheme.titleMedium,
+                  ),
+                ],
+              ),
+            )
+          : GridView.builder(
+              itemCount: tv.length,
+              gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                crossAxisCount: 2,
+                childAspectRatio: 1 / 1.45,
+                mainAxisSpacing: 18,
+                crossAxisSpacing: 13,
+              ),
+              itemBuilder: (context, index) {
+                var item = tv[index];
+                return GestureDetector(
+                  onTap: () =>
+                      context.push("${DetailTvPage.routeName}/${item.id}"),
+                  child: GridCardWidget(
+                      url: item.posterPath != null
+                          ? '$imageUrl/${item.posterPath}'
+                          : notFoundImage),
+                );
+              },
+            ),
     );
   }
 
